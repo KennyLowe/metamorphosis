@@ -147,16 +147,16 @@ public class GameEngine
             "push" => _commands.Push(cmd.Argument),
             "pull" => _commands.Pull(cmd.Argument),
             "turn" => _commands.Turn(cmd.Argument),
-            "peck" => _commands.Peck(cmd.Argument),
+            "peck" => _commands.Peck(cmd.Argument, _events),
             "bite" => _commands.Bite(cmd.Argument),
             "skin" => _commands.Skin(cmd.Argument),
             "kick" => _commands.Kick(cmd.Argument),
             "cut" => _commands.Cut(cmd.Argument),
             "fill" => _commands.Fill(cmd.Argument),
             "pour" => _commands.Pour(cmd.Argument),
-            "light" => _commands.Light(cmd.Argument),
+            "light" => _commands.Light(cmd.Argument, _events),
             "smell" => _commands.Smell(),
-            "tickle" => CreateOutput(o => o.AddLine("Tee hee!")),
+            "tickle" => _commands.Tickle(),
             "give" => _commands.Give(cmd.Argument),
             "kill" or "attack" => _commands.Kill(cmd.Argument),
             "cast" => CreateOutput(o =>
@@ -167,7 +167,7 @@ public class GameEngine
                     o.AddLine("You mutter an incantation but nothing happens.");
             }),
             "say" => _commands.Say(cmd.Argument),
-            "empty" => CreateOutput(o => o.AddLine("You empty it out.")),
+            "empty" => _commands.Empty(cmd.Argument),
             // Special
             "goto" => Teleport(cmd.Argument),
             "pray" or "kneel" => Pray(),
@@ -190,6 +190,10 @@ public class GameEngine
         if (room == null)
             return CreateOutput(o => o.AddLine("You are lost in the void."));
 
+        // Room-specific movement transitions (meta_move)
+        var special = HandleSpecialMovement(player, room, dir);
+        if (special != null) return special;
+
         var exit = room.GetExit(dir);
         if (exit == null)
             return CreateOutput(o => o.AddLine("You cannot go that way!"));
@@ -211,6 +215,89 @@ public class GameEngine
         var output = ShowCurrentRoom();
         _events.OnRoomEntry(targetRoom.Id, output);
         return output;
+    }
+
+    private GameOutput? HandleSpecialMovement(PlayerState player, Room room, Direction dir)
+    {
+        // Fish on land jumping into water (room8 down → room20 underwater)
+        if (room.Id == "room8" && dir == Direction.Down && player.CurrentForm == AnimalForm.Fish)
+        {
+            player.CurrentRoomId = "room20";
+            _store.UpdatePlayer(player);
+            var output = CreateOutput(o =>
+            {
+                o.AddLine("You make a colossal leap and land with a &+Bsplash# in the pool!");
+                o.AddLine("You are now &+Bunderwater#.");
+            });
+            return MergeOutput(output, ShowCurrentRoom());
+        }
+
+        // Snake going down from room1 to underground (room35)
+        if (room.Id == "room1" && dir == Direction.Down && player.CurrentForm == AnimalForm.Snake)
+        {
+            player.CurrentRoomId = "room35";
+            _store.UpdatePlayer(player);
+            return MergeOutput(
+                CreateOutput(o => o.AddLine("You &+Gslither# down into the darkness below.")),
+                ShowCurrentRoom());
+        }
+
+        // Beetle going down from room1 to underground
+        if (room.Id == "room1" && dir == Direction.Down && player.CurrentForm == AnimalForm.Beetle)
+        {
+            player.CurrentRoomId = "room35";
+            _store.UpdatePlayer(player);
+            return MergeOutput(
+                CreateOutput(o => o.AddLine("You &+Cscuttle# down into the darkness below.")),
+                ShowCurrentRoom());
+        }
+
+        // Beetle/snake going down from room8 to underwater (with breath timer)
+        if (room.Id == "room8" && dir == Direction.Down &&
+            (player.CurrentForm == AnimalForm.Snake || player.CurrentForm == AnimalForm.Beetle))
+        {
+            player.CurrentRoomId = "room20";
+            _store.UpdatePlayer(player);
+            var output = CreateOutput(o =>
+                o.AddLine("You slip beneath the &+Bwater# and begin to explore the depths."));
+            var roomOutput = ShowCurrentRoom();
+            _events.OnRoomEntry("room20", roomOutput);
+            return MergeOutput(output, roomOutput);
+        }
+
+        // Beetle going east from room68 (scuttle under door)
+        if (room.Id == "room68" && dir == Direction.East && player.CurrentForm == AnimalForm.Beetle)
+        {
+            player.CurrentRoomId = "room70";
+            _store.UpdatePlayer(player);
+            return MergeOutput(
+                CreateOutput(o => o.AddLine("You scuttle under the door.")),
+                ShowCurrentRoom());
+        }
+
+        // Beetle going west from room70
+        if (room.Id == "room70" && dir == Direction.West && player.CurrentForm == AnimalForm.Beetle)
+        {
+            player.CurrentRoomId = "room68";
+            _store.UpdatePlayer(player);
+            return MergeOutput(
+                CreateOutput(o => o.AddLine("You scuttle under the door.")),
+                ShowCurrentRoom());
+        }
+
+        // Surfacing from underwater (room20 up → room8)
+        if (room.Id == "room20" && dir == Direction.Up &&
+            (player.CurrentForm == AnimalForm.Snake || player.CurrentForm == AnimalForm.Beetle))
+        {
+            player.CurrentRoomId = "room8";
+            _store.UpdatePlayer(player);
+            _events.OnRoomEntry("room8", new GameOutput()); // Stop breath timer
+            return MergeOutput(
+                CreateOutput(o => o.AddLine("You surface, gulping in fresh &+Bair#.")),
+                ShowCurrentRoom());
+        }
+
+        return null; // No special movement — use standard logic
     }
 
     private Room? ResolveDoorExit(string exitId)
@@ -291,6 +378,13 @@ public class GameEngine
 
     private void ShowDirections(GameOutput output, Room room)
     {
+        var player = _store.Player;
+        var form = player.CurrentForm;
+
+        // Form-specific exit restrictions (meta_exits)
+        // Some rooms hide exits from certain forms
+        bool isBeetleOrSnake = form == AnimalForm.Beetle || form == AnimalForm.Snake;
+
         output.AddLine("\nObvious exits are:");
         var dirLabels = new (Direction Dir, string Label)[]
         {
@@ -302,16 +396,31 @@ public class GameEngine
             (Direction.Down, " &+yDown#"),
         };
 
+        bool anyExit = false;
         foreach (var (dir, label) in dirLabels)
         {
             var exit = room.GetExit(dir);
-            if (exit != null)
+            if (exit == null) continue;
+
+            // Form-specific exit hiding
+            if (!isBeetleOrSnake)
             {
-                var targetRoom = _store.GetRoomById(exit);
-                if (targetRoom != null)
-                    output.AddLine(label + " :  " + "&+M" + targetRoom.Name + "#");
+                // Non-beetle/snake can't see down exits to underground areas in certain rooms
+                if (room.Id == "room1" && dir == Direction.Down) continue;
+                if (room.Id == "room6" && dir == Direction.Down) continue;
+            }
+
+            // Try direct room, then door resolution
+            var targetRoom = _store.GetRoomById(exit) ?? ResolveDoorExit(exit);
+            if (targetRoom != null)
+            {
+                output.AddLine(label + " :  " + "&+M" + targetRoom.Name + "#");
+                anyExit = true;
             }
         }
+
+        if (!anyExit)
+            output.AddLine("None...");
     }
 
     private GameOutput Examine(string? arg)
@@ -412,6 +521,20 @@ public class GameEngine
                     if (obj.NoGet)
                     {
                         o.AddLine("You cannot take that.");
+                        return;
+                    }
+                    // Check for special untakeable objects
+                    var special = _commands.CheckGetSpecialObject(obj.ZName);
+                    if (special != null)
+                    {
+                        o.AddLine(special);
+                        return;
+                    }
+                    // Check for bird-only objects (vine, gunpowder)
+                    var birdOnly = _commands.CheckGetBirdOnly(obj.ZName);
+                    if (birdOnly != null)
+                    {
+                        o.AddLine(birdOnly);
                         return;
                     }
                     o.AddLine("You take the " + obj.Name);

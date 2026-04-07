@@ -4,8 +4,8 @@ using Metamorphosis.Core.Models;
 namespace Metamorphosis.Core.GameEngine;
 
 /// <summary>
-/// Handles all game commands beyond basic movement/look/get/drop.
-/// Implements mechanics from the original C MUD engine.
+/// Handles all game commands from the original C MUD engine (meta.c).
+/// Every function here corresponds to a meta_* function in the original code.
 /// </summary>
 public class GameCommands
 {
@@ -16,149 +16,28 @@ public class GameCommands
         _store = store;
     }
 
-    public GameOutput Eat(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Eat what?"));
-
-        var player = _store.Player;
-        int rloc = _store.GetRoomUid(player.CurrentRoomId);
-
-        // Find the item to eat/drink
-        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
-        {
-            // Toadstool in the toadstool clearing (room75)
-            if (obj.ZName == "toadstool" && player.CurrentRoomId == "room75")
-            {
-                return Output(o =>
-                {
-                    o.AddLine("As you eat the &+Ctoadstool#, a strange feeling overpowers you and you black out.");
-                    o.AddLine("");
-                    o.AddLine("You awaken in a &+Gclearing# identical to the one you were in, but the way you");
-                    o.AddLine("entered is now gone, and a new exit is revealed to the &+Gnorth#, a &+Ccauldron#");
-                    o.AddLine("now dominating the centre of the ring.");
-                    // Dump equipment and move to room72
-                    DumpPlayerItems(player.CurrentRoomId);
-                    player.CurrentRoomId = "room72";
-                    _store.UpdatePlayer(player);
-                    // Destroy the toadstool
-                    obj.Location = _store.GetRoomUid("room74"); // limbo
-                    _store.UpdateObject(obj);
-                });
-            }
-
-            // Snake vial — transform to snake
-            if (obj.ZName == "vial_snake" || obj.Name == "vial")
-            {
-                return DrinkSnakeVial(player, obj);
-            }
-
-            // Human liquid — transform back to human
-            if (obj.ZName == "liquid_human" || obj.Name == "potion")
-            {
-                return DrinkHumanPotion(player, obj);
-            }
-
-            return Output(o => o.AddLine("You can't eat that."));
-        }
-
-        return Output(o => o.AddLine("You don't have that."));
-    }
-
-    public GameOutput Drink(string? arg)
-    {
-        return Eat(arg); // Same mechanic
-    }
-
-    private GameOutput DrinkSnakeVial(PlayerState player, GameObject vial)
-    {
-        if (player.CurrentForm == AnimalForm.Snake)
-            return Output(o => o.AddLine("You are already a &+Gsnake#!"));
-
-        return Output(o =>
-        {
-            string bodyPart = player.CurrentForm switch
-            {
-                AnimalForm.Bird => "Your &+Cwings# &+Msubsume# into your &+Cbody#",
-                AnimalForm.Beetle => "Your &+Ccarapace# softens and &+Melongates#",
-                _ => "Your arms &+Msubsume# into your &+Cbody#"
-            };
-
-            o.AddLine("As you consume the &+Ggreen# liquid, your &+Cbody# begins to " +
-                (player.CurrentForm == AnimalForm.Human ? "shrink" : "grow") + ".");
-            o.AddLine(bodyPart + ", and your &+Clegs# &+Mmerge# into one");
-            o.AddLine("limb which rapidly becomes more a part of your &+Ctorso# than a separate");
-            o.AddLine("limb. Within seconds, your &+Cbody# has changed into that of a &+Gsnake#.");
-
-            DumpPlayerItems(player.CurrentRoomId);
-            player.CurrentForm = AnimalForm.Snake;
-            _store.UpdatePlayer(player);
-            o.StatusText = "snake";
-            o.AsciiArt = AsciiArt.GetArt(AnimalForm.Snake);
-            o.StrengthMana = "S:999\\999 M:999\\999";
-        });
-    }
-
-    private GameOutput DrinkHumanPotion(PlayerState player, GameObject potion)
-    {
-        if (player.CurrentForm == AnimalForm.Human)
-            return Output(o => o.AddLine("You are already &+Chuman#!"));
-
-        return Output(o =>
-        {
-            o.AddLine("As you take a sip of the &+Cliquid#, a violent spasm shoots down your throat,");
-            o.AddLine("choking off your screams of pain as your body cracks and breaks, reforming");
-            o.AddLine("into the form of a human.");
-
-            // Special case: room72 toadstool ring — fairy gives staff
-            if (player.CurrentRoomId == "room72")
-            {
-                o.AddLine("");
-                o.AddLine("The &+Ctoadstool# &+Mring# shimmers and sparkles, and in a flash of &+Ylight# a &+Mfairy#");
-                o.AddLine("appears in front of you.");
-                o.AddLine("'&+MSo the legends were true and you have finally come to rid this");
-                o.AddLine("land of the scourge of the Chimera. Take this staff, for only it can");
-                o.AddLine("hope to penetrate the evil of the Chimera and slay it once and for all!#'");
-                o.AddLine("She hands you a large &+Cstaff#, &+Rkisses# you lightly on the &+Mcheek# and");
-                o.AddLine("vanishes as quickly as she arrived.");
-                // Give player the staff
-                GivePlayerItem("staff");
-            }
-
-            player.CurrentForm = AnimalForm.Human;
-            _store.UpdatePlayer(player);
-            o.StatusText = "human";
-            o.AsciiArt = AsciiArt.GetArt(AnimalForm.Human);
-            o.StrengthMana = "S:999\\999 M:999\\999";
-        });
-    }
+    // ========== DIGGING (meta_dig) ==========
 
     public GameOutput Dig()
     {
         var player = _store.Player;
 
-        // Room75 (toadstool clearing): dig up toadstool
         if (player.CurrentRoomId == "room75")
         {
-            return Output(o =>
-            {
-                o.AddLine("You &+Cuproot# a large &+Mpurple# &+Ctoadstool#.");
-                SpawnItem("toadstool", player.CurrentRoomId);
-            });
+            SpawnItemFromLimbo("toadstool", player.CurrentRoomId);
+            return Output(o => o.AddLine("You &+Cuproot# a large &+Mpurple# &+Ctoadstool#."));
         }
 
-        // Room1 (woodland clearing): dig up snake vial
         if (player.CurrentRoomId == "room1")
         {
-            return Output(o =>
-            {
-                o.AddLine("Rooting around in the &+ydirt# you find a strange &+Cvial#.");
-                SpawnItem("vial_snake", player.CurrentRoomId);
-            });
+            SpawnItemFromLimbo("vial_snake", player.CurrentRoomId);
+            return Output(o => o.AddLine("Rooting around in the &+ydirt# you find a strange &+Cvial#."));
         }
 
         return Output(o => o.AddLine("You dig around but find nothing of interest."));
     }
+
+    // ========== FLYING (meta_fly) ==========
 
     public GameOutput Fly()
     {
@@ -166,55 +45,343 @@ public class GameCommands
         if (player.CurrentForm != AnimalForm.Bird)
             return Output(o => o.AddLine("You can't fly!"));
 
-        // Room-specific flight
-        if (player.CurrentRoomId == "room7" || player.CurrentRoomId == "room58")
+        // Room-specific flight paths
+        if (player.CurrentRoomId == "room14")
+            return Output(o => o.AddLine("Sentry &+Cbirds# beat you back! Only entry by &+Cfoot# is possible."));
+
+        if (player.CurrentRoomId == "room2") // Beside waterfall
         {
-            return Output(o =>
-            {
-                o.AddLine("You spread your wings and soar between the branches.");
-                var target = player.CurrentRoomId == "room7" ? "room58" : "room7";
-                player.CurrentRoomId = target;
-                _store.UpdatePlayer(player);
-            });
+            player.CurrentRoomId = "room1";
+            _store.UpdatePlayer(player);
+            return Output(o => o.AddLine("You spread your wings and soar back to the &+Gclearing#."));
         }
 
-        return Output(o =>
+        if (player.CurrentRoomId == "room7")
         {
-            o.AddLine("You spread your wings and soar briefly through the air before landing again.");
-        });
+            player.CurrentRoomId = "room51";
+            _store.UpdatePlayer(player);
+            return Output(o => o.AddLine("You spread your wings and fly up to the &+Gbranches# above."));
+        }
+
+        if (player.CurrentRoomId == "room58")
+        {
+            player.CurrentRoomId = "room51";
+            _store.UpdatePlayer(player);
+            return Output(o => o.AddLine("You spread your wings and fly up to the &+Gbranches# above."));
+        }
+
+        if (player.CurrentRoomId == "room51")
+        {
+            player.CurrentRoomId = "room58";
+            _store.UpdatePlayer(player);
+            return Output(o => o.AddLine("You spread your wings and glide down to the lower &+Gbranches#."));
+        }
+
+        return Output(o => o.AddLine("You spread your wings and soar briefly into the &+Cair# before landing again."));
     }
+
+    // ========== CLIMBING (meta_climb) ==========
 
     public GameOutput Climb(string? arg)
     {
         var player = _store.Player;
 
-        if (player.CurrentForm == AnimalForm.Fish)
-            return Output(o => o.AddLine("You're a fish. You can't climb."));
+        return player.CurrentForm switch
+        {
+            AnimalForm.Snake => Output(o => o.AddLine("Sentry &+Cbirds# swoop down and beat you back!")),
+            AnimalForm.Fish => Output(o => o.AddLine("You can't climb as a &+Bfish#!")),
+            AnimalForm.Beetle => Output(o =>
+            {
+                o.AddLine("A large &+Cbird# swoops down, snatches you up in its beak and devours you whole.");
+                o.AddLine("&+REaten alive!#");
+                KillPlayer(o);
+            }),
+            AnimalForm.Bird => Output(o => o.AddLine("You don't need to climb, you can &+Cfly#!")),
+            _ => Output(o => o.AddLine("The circumference is too great to get a handhold."))
+        };
+    }
 
-        if (player.CurrentForm == AnimalForm.Beetle)
+    // ========== ENTERING (meta_enter) ==========
+
+    public GameOutput Enter(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Enter what?"));
+
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
+        {
+            if (obj.ZName == "hole_beetle" && player.CurrentForm == AnimalForm.Beetle)
+            {
+                player.CurrentRoomId = "room60";
+                _store.UpdatePlayer(player);
+                return Output(o => o.AddLine("You scuttle &+Gdown# the &+Chole#."));
+            }
+
+            if (obj.ZName == "hole_beetle_up" && player.CurrentForm == AnimalForm.Beetle)
+            {
+                player.CurrentRoomId = "room59";
+                _store.UpdatePlayer(player);
+                return Output(o => o.AddLine("You scuttle &+Gup# the &+Chole#."));
+            }
+
+            if (obj.Name == "hole" || obj.ZName == "hole")
+            {
+                if (player.CurrentForm == AnimalForm.Snake)
+                {
+                    player.CurrentRoomId = "room35";
+                    _store.UpdatePlayer(player);
+                    return Output(o => o.AddLine("You &+Gslither# down the hole."));
+                }
+                if (player.CurrentForm == AnimalForm.Beetle)
+                {
+                    player.CurrentRoomId = "room35";
+                    _store.UpdatePlayer(player);
+                    return Output(o => o.AddLine("You &+Cscuttle# down the hole."));
+                }
+                return Output(o => o.AddLine("You're too big to fit in there."));
+            }
+
+            if (obj.ZName == "hole_up")
+            {
+                if (player.CurrentForm == AnimalForm.Snake)
+                {
+                    player.CurrentRoomId = "room1";
+                    _store.UpdatePlayer(player);
+                    return Output(o => o.AddLine("You &+Gslither# up the hole."));
+                }
+                if (player.CurrentForm == AnimalForm.Beetle)
+                {
+                    player.CurrentRoomId = "room1";
+                    _store.UpdatePlayer(player);
+                    return Output(o => o.AddLine("You &+Cscuttle# up the hole."));
+                }
+                return Output(o => o.AddLine("You're too big to fit in there."));
+            }
+
+            if (obj.ZName == "hole_herring")
+            {
+                return Output(o =>
+                {
+                    o.AddLine("Terror takes a firm grip on your heart as you enter the darkness...");
+                    o.AddLine("A dark force beyond comprehension overwhelms you.");
+                    KillPlayer(o);
+                });
+            }
+        }
+
+        return Output(o => o.AddLine("You can't enter that."));
+    }
+
+    // ========== NPC TRADING (meta_give) ==========
+
+    public GameOutput Give(string? arg)
+    {
+        if (arg == null || !arg.Contains(" to "))
+            return Output(o => o.AddLine("Give what to whom? (e.g. 'give skin to shopkeeper')"));
+
+        var parts = arg.Split(" to ", 2);
+        var itemName = parts[0].Trim();
+        var targetName = parts[1].Trim();
+
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        // Find the item in inventory
+        GameObject? item = null;
+        foreach (var obj in _store.GetPlayerInventory(PlayerState.PlayerUid))
+        {
+            if (obj.Name == itemName || obj.ZName == itemName)
+            {
+                item = obj;
+                break;
+            }
+        }
+        if (item == null)
+            return Output(o => o.AddLine("You aren't carrying that."));
+
+        // Find the NPC
+        Mobile? target = null;
+        foreach (var mob in _store.GetMobilesAtLocation(rloc))
+        {
+            if (mob.Id == targetName || mob.AltName == targetName ||
+                mob.PName.ToLower().Contains(targetName))
+            {
+                target = mob;
+                break;
+            }
+        }
+        if (target == null)
+            return Output(o => o.AddLine("They're not here."));
+
+        // Shopkeeper + Skin = Orb
+        if (target.Id == "shopkeeper" && item.ZName == "skin")
+        {
             return Output(o =>
             {
-                o.AddLine("A large bird swoops down, snatches you up in its beak and devours you whole.");
-                o.AddLine("&+REaten alive!#");
-                o.IsDeathMenu = true;
-                player.IsDead = true;
-                _store.UpdatePlayer(player);
+                o.AddLine("The &+CShopkeeper# takes the skin and examines it carefully.");
+                o.AddLine("'&+MAh, a fine rabbit skin! Here, take this orb as payment.#'");
+                SendToLimbo(item);
+                SpawnItemToPlayer("orb");
+                o.Inventory = BuildInventory();
             });
+        }
 
-        if (player.CurrentForm == AnimalForm.Bird)
-            return Output(o => o.AddLine("You don't need to climb, you can fly!"));
+        // Judge + Orb = Silver Feather
+        if (target.Id == "judge" && item.ZName == "orb")
+        {
+            return Output(o =>
+            {
+                o.AddLine("You present the &+Corb# to the &+CJudge#.");
+                o.AddLine("'&+MThis is the shopkeeper's orb! He stole it from the treasury!#'");
+                o.AddLine("'&+MAs a reward for returning it, take this silver feather.#'");
+                SendToLimbo(item);
+                SpawnItemToPlayer("silver_feather");
+                o.Inventory = BuildInventory();
+            });
+        }
 
-        return Output(o => o.AddLine("The surface is too smooth to get a handhold."));
+        // Snake Beggar + Flask with water = Pebble (snake only)
+        if (target.Id == "snake_beggar" && (item.ZName == "flask_empty" || item.Name == "flask"))
+        {
+            if (player.CurrentForm != AnimalForm.Snake)
+                return Output(o => o.AddLine("'&+MDo you really think I'm so desperate as to deal with the likes of you?#'"));
+
+            return Output(o =>
+            {
+                o.AddLine("The &+Gbeggar# greedily snatches the flask and drinks deeply.");
+                o.AddLine("'&+MAhh, water! Here, take this pebble as thanks.#'");
+                SendToLimbo(item);
+                SpawnItemToPlayer("pebble1");
+                o.Inventory = BuildInventory();
+            });
+        }
+
+        return Output(o => o.AddLine("They don't want that."));
     }
 
-    public GameOutput Peck(string? arg)
+    // ========== COMBAT (meta_kill / meta_wound) ==========
+
+    public GameOutput Kill(string? arg)
     {
-        var player = _store.Player;
-        if (player.CurrentForm != AnimalForm.Bird)
-            return Output(o => o.AddLine("You don't have a beak to peck with!"));
+        if (arg == null)
+            return Output(o => o.AddLine("Kill what?"));
 
-        return Output(o => o.AddLine("You peck at it but nothing happens."));
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        foreach (var mob in _store.GetMobilesAtLocation(rloc))
+        {
+            if (mob.Id == arg || mob.AltName == arg || mob.PName.ToLower().Contains(arg))
+            {
+                // Chimera — only human with staff can fight
+                if (mob.Id == "chimera")
+                {
+                    if (player.CurrentForm != AnimalForm.Human)
+                        return Output(o =>
+                        {
+                            o.AddLine("The &+CChimera# laughs at you with impunity and crushes you with a single massive hairy paw.");
+                            o.AddLine("&+RCrushed by the Chimera!#");
+                            KillPlayer(o);
+                        });
+
+                    // Check for staff
+                    bool hasStaff = _store.GetPlayerInventory(PlayerState.PlayerUid)
+                        .Any(obj => obj.ZName == "staff" && obj.Wielded == PlayerState.PlayerUid);
+                    if (!hasStaff)
+                        return Output(o =>
+                        {
+                            o.AddLine("The &+CChimera# swats you aside like a fly.");
+                            o.AddLine("&+RCrushed by the Chimera!#");
+                            KillPlayer(o);
+                        });
+
+                    return Output(o =>
+                    {
+                        o.AddLine("You swing the &+Cstaff# with all your might!");
+                        o.AddLine("The &+CChimera# &+Rshrieks# in agony as the staff connects, its dark power withering under the magical blow.");
+                        o.AddLine("With a final, devastating strike, the &+CChimera# collapses and dies.");
+                        mob.Location = _store.GetRoomUid("room74");
+                        _store.UpdateMobile(mob);
+                    });
+                }
+
+                // Rabbits — snake only
+                if (mob.Id == "flopsy" || mob.Id == "mopsy")
+                {
+                    if (player.CurrentForm != AnimalForm.Snake)
+                        return Output(o => o.AddLine("You're not equipped to fight a rabbit in this form."));
+
+                    return Output(o =>
+                    {
+                        o.AddLine("The " + mob.PName + " sees you coming and bolts in terror!");
+                        o.AddLine("All the rabbits scatter and disappear into the undergrowth.");
+                        // Remove all rabbits
+                        int limbo = _store.GetRoomUid("room74");
+                        foreach (var m in _store.GetMobilesAtLocation(rloc).ToList())
+                        {
+                            if (m.Id == "flopsy" || m.Id == "mopsy" || m.Id == "cottontail")
+                            {
+                                m.Location = limbo;
+                                _store.UpdateMobile(m);
+                            }
+                        }
+                    });
+                }
+
+                if (mob.Id == "cottontail")
+                {
+                    if (player.CurrentForm != AnimalForm.Snake)
+                        return Output(o => o.AddLine("You're not equipped to fight a rabbit in this form."));
+
+                    int numItems = _store.GetPlayerInventory(PlayerState.PlayerUid).Count();
+                    if (numItems > 1)
+                        return Output(o => o.AddLine("You cannot &+Rbite# with something in your mouth."));
+
+                    return Output(o =>
+                    {
+                        o.AddLine("You lunge forward and bite down hard on the rabbit's neck, biting through the spine.");
+                        o.AddLine("The " + mob.PName + " collapses, lifeless.");
+                        mob.Location = _store.GetRoomUid("room74");
+                        _store.UpdateMobile(mob);
+                        // Spawn cottontail corpse
+                        SpawnItemFromLimbo("cottontail", player.CurrentRoomId);
+                    });
+                }
+
+                // Snake beggar — drops pebbles when attacked
+                if (mob.Id == "snake_beggar")
+                {
+                    if (player.CurrentForm == AnimalForm.Beetle || player.CurrentForm == AnimalForm.Fish)
+                        return Output(o => o.AddLine("You are far too puny to attack that."));
+
+                    return Output(o =>
+                    {
+                        o.AddLine("You attack the &+Gbeggar#! He drops a pebble and hobbles away in fright.");
+                        SpawnItemFromLimbo("pebble1", player.CurrentRoomId);
+                    });
+                }
+
+                // Generic combat
+                if (player.CurrentForm != AnimalForm.Human)
+                    return Output(o => o.AddLine("You're too puny in this form to fight anything."));
+
+                return Output(o =>
+                {
+                    o.AddLine("You attack the " + mob.PName + "!");
+                    o.AddLine("After a fierce battle, the " + mob.PName + " is defeated.");
+                    mob.Location = _store.GetRoomUid("room74");
+                    _store.UpdateMobile(mob);
+                });
+            }
+        }
+
+        return Output(o => o.AddLine("There's nothing here to fight."));
     }
+
+    // ========== SNAKE BITING (meta_bite) ==========
 
     public GameOutput Bite(string? arg)
     {
@@ -225,42 +392,109 @@ public class GameCommands
         if (arg == null)
             return Output(o => o.AddLine("Bite what?"));
 
-        // Find target mobile
-        int rloc = _store.GetRoomUid(player.CurrentRoomId);
-        foreach (var mob in _store.GetMobilesAtLocation(rloc))
+        int numItems = _store.GetPlayerInventory(PlayerState.PlayerUid).Count();
+        if (numItems > 1)
+            return Output(o => o.AddLine("You cannot &+Rbite# with something in your mouth."));
+
+        // Delegate to Kill for rabbits
+        return Kill(arg);
+    }
+
+    // ========== BIRD PECKING (meta_peck) ==========
+
+    public GameOutput Peck(string? arg, RoomEvents events)
+    {
+        var player = _store.Player;
+        if (player.CurrentForm != AnimalForm.Bird)
+            return Output(o => o.AddLine("You don't have a beak to peck with!"));
+
+        if (arg == null)
+            return Output(o => o.AddLine("Peck what?"));
+
+        // Pecking the tree triggers bird arrest
+        if (arg == "tree" || arg == "sap")
         {
-            if (mob.Id == arg || mob.AltName == arg || mob.PName.ToLower().Contains(arg))
+            return Output(o =>
             {
-                return Output(o =>
-                {
-                    o.AddLine("You lunge forward and bite down hard on the " + mob.PName + "!");
-                    o.AddLine("The " + mob.PName + " collapses, lifeless.");
-                    mob.Location = _store.GetRoomUid("room74"); // limbo
-                    _store.UpdateMobile(mob);
-                });
-            }
+                o.AddLine("You peck at the &+gtree#, causing sap to ooze from the wound.");
+                o.AddLine("Suddenly, a flock of angry &+Cbirds# swoops down upon you!");
+                o.AddLine("'&+MYou dare damage our sacred tree?! Seize this criminal!#'");
+                o.AddLine("You are dragged off to a &+Ccell# and thrown inside.");
+                player.CurrentRoomId = "room52";
+                _store.UpdatePlayer(player);
+                events.StartJail();
+            });
         }
 
-        return Output(o => o.AddLine("There's nothing here to bite."));
+        return Output(o => o.AddLine("You peck at it but nothing happens."));
     }
+
+    // ========== BIRD SKINNING (meta_skin) ==========
 
     public GameOutput Skin(string? arg)
     {
         var player = _store.Player;
         if (player.CurrentForm != AnimalForm.Bird)
-            return Output(o => o.AddLine("You need a beak sharp enough to skin something."));
+            return Output(o => o.AddLine("You are not equipped for skinning."));
+
+        if (arg == null)
+            return Output(o => o.AddLine("Skin what?"));
+
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
+        {
+            if (obj.ZName == "cottontail")
+            {
+                SendToLimbo(obj);
+                SpawnItemFromLimbo("skin", player.CurrentRoomId);
+                return Output(o =>
+                {
+                    o.AddLine("You use your sharp beak to expertly skin the rabbit carcass.");
+                    o.AddLine("A fine &+Crabbit skin# lies on the ground.");
+                });
+            }
+        }
 
         return Output(o => o.AddLine("There's nothing here to skin."));
     }
 
-    public GameOutput Kick(string? arg)
+    // ========== TICKLING (meta_tickle) ==========
+
+    public GameOutput Tickle()
     {
         var player = _store.Player;
-        if (player.CurrentForm == AnimalForm.Snake)
-            return Output(o => o.AddLine("You don't have any legs!"));
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
 
-        return Output(o => o.AddLine("You kick around but accomplish nothing."));
+        foreach (var mob in _store.GetMobilesAtLocation(rloc))
+        {
+            if (mob.Id == "snake_beggar")
+            {
+                if (player.CurrentForm == AnimalForm.Beetle)
+                    return Output(o =>
+                    {
+                        o.AddLine("You tickle the &+Gsnake# with your antennae. He drops a pebble on you, crushing you instantly.");
+                        o.AddLine("&+RCrushed by a juggling snake!#");
+                        KillPlayer(o);
+                    });
+
+                if (player.CurrentForm == AnimalForm.Bird)
+                {
+                    return Output(o =>
+                    {
+                        o.AddLine("You tickle the &+Gsnake# with your feathers. He writhes with laughter,");
+                        o.AddLine("dropping a &+Cpebble# in the process!");
+                        SpawnItemFromLimbo("pebble1", player.CurrentRoomId);
+                    });
+                }
+
+                return Output(o => o.AddLine("You're not really equipped to tickle effectively."));
+            }
+        }
+
+        return Output(o => o.AddLine("Tee hee!"));
     }
+
+    // ========== OBJECT INTERACTION: OPEN/CLOSE/TURN (meta_open/close/turn) ==========
 
     public GameOutput Open(string? arg)
     {
@@ -276,13 +510,16 @@ public class GameCommands
             {
                 if (obj.State == 1)
                     return Output(o => o.AddLine("It's already open."));
-
                 obj.State = 1;
                 _store.UpdateObject(obj);
+
+                var room = _store.GetRoomById(player.CurrentRoomId);
+                if (room != null && room.IsUnderwater && obj.ZName == "chest")
+                    return Output(o => o.AddLine("You open the &+Cchest#. Air escapes in a rush of &+Bbubbles#."));
+
                 return Output(o => o.AddLine("You open the " + obj.Name + "."));
             }
         }
-
         return Output(o => o.AddLine("You can't open that."));
     }
 
@@ -300,14 +537,57 @@ public class GameCommands
             {
                 if (obj.State == 0)
                     return Output(o => o.AddLine("It's already closed."));
-
                 obj.State = 0;
                 _store.UpdateObject(obj);
                 return Output(o => o.AddLine("You close the " + obj.Name + "."));
             }
         }
-
         return Output(o => o.AddLine("You can't close that."));
+    }
+
+    public GameOutput Turn(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Turn what?"));
+
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
+        {
+            if (obj.ZName == "chest")
+            {
+                var room = _store.GetRoomById(player.CurrentRoomId);
+                if (room != null && room.IsUnderwater)
+                    return Output(o => o.AddLine("You turn the &+Cchest# upside down, trapping &+Bair# inside."));
+                return Output(o => o.AddLine("You turn the &+Cchest# upside down."));
+            }
+        }
+        return Output(o => o.AddLine("You can't turn that."));
+    }
+
+    // ========== PULLING (meta_pull) — drawbridge mechanism ==========
+
+    public GameOutput Pull(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Pull what?"));
+
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
+        {
+            if (obj.ZName == "branch_mechanism" || obj.ZName == "stone_branch")
+            {
+                return Output(o =>
+                {
+                    o.AddLine("You pull the lever with all your might.");
+                    o.AddLine("With a great &+Ycreaking# sound, the &+Cdrawbridge# lowers into place.");
+                });
+            }
+        }
+        return Output(o => o.AddLine("Nothing happens."));
     }
 
     public GameOutput Push(string? arg)
@@ -317,12 +597,169 @@ public class GameCommands
         return Output(o => o.AddLine("Nothing happens."));
     }
 
-    public GameOutput Pull(string? arg)
+    // ========== CUTTING (meta_cut) — rope/drawbridge ==========
+
+    public GameOutput Cut(string? arg)
     {
         if (arg == null)
-            return Output(o => o.AddLine("Pull what?"));
-        return Output(o => o.AddLine("Nothing happens."));
+            return Output(o => o.AddLine("Cut what?"));
+
+        var player = _store.Player;
+
+        if (arg == "rope" || arg == "ropes")
+        {
+            if (player.CurrentForm == AnimalForm.Bird)
+                return Output(o =>
+                {
+                    o.AddLine("You use your sharp beak to cut through the &+Cropes#.");
+                    o.AddLine("The &+Cdrawbridge# comes crashing down with a tremendous &+Ycrash#!");
+                });
+
+            if (player.CurrentForm == AnimalForm.Snake)
+                return Output(o =>
+                {
+                    o.AddLine("You use your sharp teeth to gnaw through the &+Cropes#.");
+                    o.AddLine("The &+Cdrawbridge# comes crashing down with a tremendous &+Ycrash#!");
+                });
+
+            return Output(o => o.AddLine("You don't have the tools to cut that."));
+        }
+
+        return Output(o => o.AddLine("You can't cut that."));
     }
+
+    // ========== FILLING (meta_fill) ==========
+
+    public GameOutput Fill(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Fill what?"));
+
+        var player = _store.Player;
+        var room = _store.GetRoomById(player.CurrentRoomId);
+
+        // Check if at a water source
+        bool atWater = room != null && (room.IsUnderwater ||
+            player.CurrentRoomId == "room2" || player.CurrentRoomId == "room5" ||
+            player.CurrentRoomId == "room8");
+
+        if (!atWater)
+            return Output(o => o.AddLine("There's nothing here to fill it from."));
+
+        foreach (var obj in _store.GetPlayerInventory(PlayerState.PlayerUid))
+        {
+            if (obj.Name == arg || obj.ZName == arg)
+            {
+                if (obj.ZName == "bottle" || obj.ZName == "flask_empty")
+                {
+                    return Output(o =>
+                    {
+                        o.AddLine("You fill the " + obj.Name + " with &+Bwater#.");
+                    });
+                }
+            }
+        }
+
+        return Output(o => o.AddLine("You can't fill that."));
+    }
+
+    // ========== POURING (meta_pour) ==========
+
+    public GameOutput Pour(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Pour what?"));
+
+        return Output(o => o.AddLine("You pour it out. The liquid seeps into the earth."));
+    }
+
+    // ========== LIGHTING (meta_light) ==========
+
+    public GameOutput Light(string? arg, RoomEvents events)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Light what?"));
+
+        var player = _store.Player;
+        int rloc = _store.GetRoomUid(player.CurrentRoomId);
+
+        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
+        {
+            if (obj.ZName == "gunpowder")
+            {
+                return Output(o =>
+                {
+                    o.AddLine("The &+Ygunpowder# ignites with a tremendous &+REXPLOSION#!");
+                    o.AddLine("&+RCompletely blown away!#");
+                    KillPlayer(o);
+                });
+            }
+
+            if (obj.ZName == "bomb")
+            {
+                events.StartBomb();
+                return Output(o => o.AddLine("You light the fuse on the &+Rbomb#. It begins to &+Yhiss# ominously..."));
+            }
+
+            if (obj.ZName == "kindling")
+            {
+                return Output(o => o.AddLine("You light the &+Ykindling# beneath the &+Ccauldron#. Flames lick upward."));
+            }
+        }
+
+        return Output(o => o.AddLine("You don't have anything to light it with."));
+    }
+
+    // ========== SPEAKING (meta_say) ==========
+
+    public GameOutput Say(string? arg)
+    {
+        if (arg == null)
+            return Output(o => o.AddLine("Say what?"));
+
+        var player = _store.Player;
+
+        // Judge's court — guilty/innocent plea
+        if (player.CurrentRoomId == "room53")
+        {
+            var lower = arg.ToLower();
+            if (lower.Contains("guilty"))
+            {
+                return Output(o =>
+                {
+                    o.AddLine("You say '&+Mguilty#'.");
+                    o.AddLine("The &+CJudge# nods solemnly. '&+MThe court finds you guilty as charged.");
+                    o.AddLine("You are hereby sentenced to life imprisonment.#'");
+                    o.AddLine("Guards drag you away to the dungeons.");
+                    // Move to jail
+                    player.CurrentRoomId = "room52";
+                    _store.UpdatePlayer(player);
+                });
+            }
+
+            if (lower.Contains("innocent"))
+            {
+                return Output(o =>
+                {
+                    o.AddLine("You say '&+Minnocent#'.");
+                    o.AddLine("The &+CJudge# raises an eyebrow. '&+MLying in my court?");
+                    o.AddLine("The court finds you guilty. You are sentenced to life imprisonment.#'");
+                    player.CurrentRoomId = "room52";
+                    _store.UpdatePlayer(player);
+                });
+            }
+
+            return Output(o =>
+            {
+                o.AddLine("You say '" + arg + "'.");
+                o.AddLine("The bailiff barks, '&+MInnocent or Guilty? Answer the question!#'");
+            });
+        }
+
+        return Output(o => o.AddLine("You say '" + arg + "'."));
+    }
+
+    // ========== WEARING ARMOUR (meta_wear) ==========
 
     public GameOutput Wear(string? arg)
     {
@@ -339,7 +776,6 @@ public class GameCommands
             {
                 if (!obj.IsWearable)
                     return Output(o => o.AddLine("You can't wear that."));
-
                 if (obj.Worn == PlayerState.PlayerUid)
                     return Output(o => o.AddLine("You're already wearing it."));
 
@@ -353,7 +789,6 @@ public class GameCommands
                 });
             }
         }
-
         return Output(o => o.AddLine("You aren't carrying it."));
     }
 
@@ -376,66 +811,23 @@ public class GameCommands
                 });
             }
         }
-
         return Output(o => o.AddLine("You aren't wearing that."));
     }
 
-    public GameOutput Say(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Say what?"));
-
-        return Output(o => o.AddLine("You say '" + arg + "'."));
-    }
-
-    public GameOutput Give(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Give what to whom?"));
-        return Output(o => o.AddLine("Give what to whom?"));
-    }
-
-    public GameOutput Enter(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Enter what?"));
-
-        var player = _store.Player;
-        int rloc = _store.GetRoomUid(player.CurrentRoomId);
-
-        foreach (var obj in _store.GetObjectsByName(arg, rloc, PlayerState.PlayerUid))
-        {
-            // Hole mechanics — form-specific
-            if (obj.Name == "hole" || obj.ZName == "hole")
-            {
-                if (player.CurrentForm == AnimalForm.Snake)
-                {
-                    return Output(o =>
-                    {
-                        o.AddLine("You &+Gslither# down the hole.");
-                        player.CurrentRoomId = "room35";
-                        _store.UpdatePlayer(player);
-                    });
-                }
-                if (player.CurrentForm == AnimalForm.Beetle)
-                {
-                    return Output(o =>
-                    {
-                        o.AddLine("You &+Cscuttle# down the hole.");
-                        player.CurrentRoomId = "room35";
-                        _store.UpdatePlayer(player);
-                    });
-                }
-                return Output(o => o.AddLine("You're too big to fit in there."));
-            }
-        }
-
-        return Output(o => o.AddLine("You can't enter that."));
-    }
+    // ========== SMELLING (meta_smell) ==========
 
     public GameOutput Smell()
     {
         var player = _store.Player;
+
+        if (player.CurrentForm == AnimalForm.Beetle && player.CurrentRoomId == "room59")
+            return Output(o => o.AddLine("The smell of &+ydung# fills the air, but to your beetle senses it is like sweet &+Mnectar#."));
+
+        if (player.CurrentForm == AnimalForm.Human && player.CurrentRoomId == "room59")
+            return Output(o => o.AddLine("The smell is absolutely &+Rintolerable#. It is like being trapped in a cattle stall."));
+
+        if (player.CurrentRoomId == "room60")
+            return Output(o => o.AddLine("You detect lingering traces of &+ydung# to the &+Geast# and &+Gwest#."));
 
         if (player.CurrentForm == AnimalForm.Beetle)
             return Output(o => o.AddLine("Your antennae twitch as you sense the air around you."));
@@ -443,69 +835,45 @@ public class GameCommands
         return Output(o => o.AddLine("You sniff the air but detect nothing unusual."));
     }
 
-    public GameOutput Fill(string? arg)
+    // ========== KICKING (meta_kick) ==========
+
+    public GameOutput Kick(string? arg)
     {
-        if (arg == null)
-            return Output(o => o.AddLine("Fill what?"));
-        return Output(o => o.AddLine("There's nothing to fill it with here."));
+        var player = _store.Player;
+        if (player.CurrentForm == AnimalForm.Snake)
+            return Output(o => o.AddLine("You don't have any legs!"));
+        return Output(o => o.AddLine("You kick around but accomplish nothing."));
     }
 
-    public GameOutput Pour(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Pour what?"));
-        return Output(o => o.AddLine("You pour it out. It seeps into the earth."));
-    }
+    // ========== EMPTYING (meta_empty) ==========
 
-    public GameOutput Light(string? arg)
+    public GameOutput Empty(string? arg)
     {
         if (arg == null)
-            return Output(o => o.AddLine("Light what?"));
-        return Output(o => o.AddLine("You don't have anything to light it with."));
-    }
-
-    public GameOutput Cut(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Cut what?"));
-        return Output(o => o.AddLine("You can't cut that."));
-    }
-
-    public GameOutput Turn(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Turn what?"));
-        return Output(o => o.AddLine("Nothing happens."));
-    }
-
-    public GameOutput Kill(string? arg)
-    {
-        if (arg == null)
-            return Output(o => o.AddLine("Kill what?"));
+            return Output(o => o.AddLine("Empty what?"));
 
         var player = _store.Player;
-        if (player.CurrentForm != AnimalForm.Human)
-            return Output(o => o.AddLine("You're too puny in this form to fight anything."));
 
-        int rloc = _store.GetRoomUid(player.CurrentRoomId);
-        foreach (var mob in _store.GetMobilesAtLocation(rloc))
+        if (player.CurrentForm == AnimalForm.Bird && (arg == "gun" || arg == "cannon"))
         {
-            if (mob.Id == arg || mob.AltName == arg || mob.PName.ToLower().Contains(arg))
-            {
-                return Output(o =>
-                {
-                    o.AddLine("You attack the " + mob.PName + "!");
-                    o.AddLine("After a fierce battle, the " + mob.PName + " is defeated.");
-                    mob.Location = _store.GetRoomUid("room74"); // limbo
-                    _store.UpdateMobile(mob);
-                });
-            }
+            SpawnItemFromLimbo("gunpowder", player.CurrentRoomId);
+            return Output(o => o.AddLine("You fly up and tip out the &+Ygunpowder# from the gun."));
         }
 
-        return Output(o => o.AddLine("There's nothing here to fight."));
+        if (player.CurrentForm == AnimalForm.Bird && arg == "vines")
+        {
+            SpawnItemFromLimbo("vine", player.CurrentRoomId);
+            return Output(o => o.AddLine("You fly up and pull a &+Gvine# free from the tangle."));
+        }
+
+        if (player.CurrentForm != AnimalForm.Bird && (arg == "gun" || arg == "vines" || arg == "cannon"))
+            return Output(o => o.AddLine("It's too far out of reach."));
+
+        return Output(o => o.AddLine("You empty it out."));
     }
 
-    // Wield restriction check — called from GameEngine before wielding
+    // ========== FORM RESTRICTION CHECKS ==========
+
     public string? CheckWieldRestriction()
     {
         var player = _store.Player;
@@ -515,11 +883,10 @@ public class GameCommands
             AnimalForm.Fish => "You don't have any hands!",
             AnimalForm.Bird => "You can't grasp a weapon in your wings.",
             AnimalForm.Beetle => "Your legs are too small to wield anything.",
-            _ => null // Human can wield
+            _ => null
         };
     }
 
-    // Get restriction check — form-based inventory limits
     public string? CheckGetRestriction()
     {
         var player = _store.Player;
@@ -536,24 +903,65 @@ public class GameCommands
         };
     }
 
-    private void DumpPlayerItems(string roomId)
+    public string? CheckGetSpecialObject(string objZName)
     {
-        int rloc = _store.GetRoomUid(roomId);
+        return objZName switch
+        {
+            "blue_flame" => "It is paradoxically too &+Ccold# to touch.",
+            "red_flame" => "It is too &+Rhot# to touch.",
+            "water" or "water_2" or "water_3" or "water_4" => "The water slips through your fingers.",
+            "dung" => "Guards step in front of you, blocking your way to the dung.",
+            _ => null
+        };
+    }
+
+    public string? CheckGetBirdOnly(string objZName)
+    {
+        var player = _store.Player;
+        if ((objZName == "vine" || objZName == "gunpowder") && player.CurrentForm != AnimalForm.Bird)
+            return "It's too far out of reach.";
+        return null;
+    }
+
+    // ========== HELPER METHODS ==========
+
+    private void KillPlayer(GameOutput output)
+    {
+        var player = _store.Player;
+        int limboUid = _store.GetRoomUid("room74");
         foreach (var obj in _store.GetPlayerInventory(PlayerState.PlayerUid).ToList())
         {
             obj.Carried = 0;
             obj.Wielded = 0;
             obj.Worn = 0;
-            obj.Location = rloc;
+            obj.Location = limboUid;
             _store.UpdateObject(obj);
         }
+        player.IsDead = true;
+        _store.UpdatePlayer(player);
+        output.IsDeathMenu = true;
+
+        output.AddLines(
+            "------------------------------------------------------------------------------\n",
+            "                &+ROh dear... you seem to be slightly dead.#\n",
+            "------------------------------------------------------------------------------",
+            "         &+y ___________________________#",
+            "     &+R()==#&+y(__________________________(@#&+R==()#",
+            "           &+y|                        |#",
+            "           &+y| &+YMenu [#&+RDeath#&+Y]#           &+y|#",
+            "           &+y|                        |#",
+            "           &+y|# &+CR#&+Y)# &+Westart Meta#         &+y|#",
+            "           &+y|# &+RQ#&+Y)# &+Wuit game#            &+y|#",
+            "          &+y_|________________________|#",
+            "     &+R()==#&+y(__________________________(@#&+R==()#"
+        );
     }
 
-    private void SpawnItem(string zname, string roomId)
+    private void SpawnItemFromLimbo(string zname, string roomId)
     {
-        // Find item in limbo and move to room
         int rloc = _store.GetRoomUid(roomId);
         int limbo = _store.GetRoomUid("room74");
+        // Check limbo first, then search everywhere
         foreach (var obj in _store.GetObjectsAtLocation(limbo))
         {
             if (obj.ZName == zname)
@@ -565,22 +973,28 @@ public class GameCommands
         }
     }
 
-    private void GivePlayerItem(string name)
+    private void SpawnItemToPlayer(string zname)
     {
-        // Find item by name and give to player
-        foreach (var room in _store.GetAllRooms())
+        int limbo = _store.GetRoomUid("room74");
+        foreach (var obj in _store.GetObjectsAtLocation(limbo))
         {
-            foreach (var obj in _store.GetObjectsAtLocation(room.Uid))
+            if (obj.ZName == zname)
             {
-                if (obj.Name == name || obj.ZName == name)
-                {
-                    obj.Location = PlayerState.PlayerUid;
-                    obj.Carried = PlayerState.PlayerUid;
-                    _store.UpdateObject(obj);
-                    return;
-                }
+                obj.Location = PlayerState.PlayerUid;
+                obj.Carried = PlayerState.PlayerUid;
+                _store.UpdateObject(obj);
+                return;
             }
         }
+    }
+
+    private void SendToLimbo(GameObject obj)
+    {
+        obj.Location = _store.GetRoomUid("room74");
+        obj.Carried = 0;
+        obj.Wielded = 0;
+        obj.Worn = 0;
+        _store.UpdateObject(obj);
     }
 
     private InventoryState BuildInventory()
