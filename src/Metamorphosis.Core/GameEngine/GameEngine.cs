@@ -9,6 +9,8 @@ public class GameEngine
     private readonly IGameDataStore _store;
     private readonly MetaTxtParser _parser;
     private readonly ILogger<GameEngine>? _logger;
+    private readonly RoomEvents _events;
+    private readonly GameCommands _commands;
     private List<Room> _baseRooms = new();
     private List<Mobile> _baseMobiles = new();
     private List<GameObject> _baseObjects = new();
@@ -18,6 +20,8 @@ public class GameEngine
         _store = store;
         _parser = parser;
         _logger = logger;
+        _events = new RoomEvents(store);
+        _commands = new GameCommands(store);
     }
 
     public GameOutput Initialize()
@@ -53,7 +57,13 @@ public class GameEngine
             return HandleDeathCommand(parsed);
 
         // Normal gameplay
-        return HandleGameCommand(parsed);
+        var result = HandleGameCommand(parsed);
+
+        // Advance any active event timers
+        if (!_store.Player.IsDead && !_store.Player.IsInEntryMenu)
+            _events.Tick(result);
+
+        return result;
     }
 
     public PlayerState GetCurrentState() => _store.Player;
@@ -106,24 +116,64 @@ public class GameEngine
     {
         return cmd.Verb switch
         {
+            // Navigation
             "n" or "north" => Move(Direction.North),
             "south" => Move(Direction.South),
             "east" => Move(Direction.East),
             "west" => Move(Direction.West),
             "up" => Move(Direction.Up),
             "down" => Move(Direction.Down),
+            // View
             "l" or "look" => ShowCurrentRoom(),
             "ploc" => CreateOutput(o => o.AddLine(_store.Player.CurrentRoomId)),
             "examine" => Examine(cmd.Argument),
             "inventory" => ShowInventory(),
-            "drop" => Drop(cmd.Argument),
+            // Basic interaction
             "get" or "take" => Get(cmd.Argument),
+            "drop" => Drop(cmd.Argument),
             "wield" => Wield(cmd.Argument),
+            "wear" => _commands.Wear(cmd.Argument),
+            "remove" => _commands.Remove(cmd.Argument),
+            // Advanced interaction
+            "eat" or "drink" => _commands.Eat(cmd.Argument),
+            "dig" => _commands.Dig(),
+            "fly" => _commands.Fly(),
+            "climb" => _commands.Climb(cmd.Argument),
+            "enter" => _commands.Enter(cmd.Argument),
+            "open" => _commands.Open(cmd.Argument),
+            "close" => _commands.Close(cmd.Argument),
+            "push" => _commands.Push(cmd.Argument),
+            "pull" => _commands.Pull(cmd.Argument),
+            "turn" => _commands.Turn(cmd.Argument),
+            "peck" => _commands.Peck(cmd.Argument),
+            "bite" => _commands.Bite(cmd.Argument),
+            "skin" => _commands.Skin(cmd.Argument),
+            "kick" => _commands.Kick(cmd.Argument),
+            "cut" => _commands.Cut(cmd.Argument),
+            "fill" => _commands.Fill(cmd.Argument),
+            "pour" => _commands.Pour(cmd.Argument),
+            "light" => _commands.Light(cmd.Argument),
+            "smell" => _commands.Smell(),
+            "tickle" => CreateOutput(o => o.AddLine("Tee hee!")),
+            "give" => _commands.Give(cmd.Argument),
+            "kill" or "attack" => _commands.Kill(cmd.Argument),
+            "cast" => CreateOutput(o =>
+            {
+                if (_store.Player.CurrentForm != AnimalForm.Human)
+                    o.AddLine("Your tiny brain can't cope with the intricacies of magic in this form.");
+                else
+                    o.AddLine("You mutter an incantation but nothing happens.");
+            }),
+            "say" => _commands.Say(cmd.Argument),
+            "empty" => CreateOutput(o => o.AddLine("You empty it out.")),
+            // Special
             "goto" => Teleport(cmd.Argument),
             "pray" or "kneel" => Pray(),
             "jump" => Jump(),
+            // Meta
             "h" or "help" => ShowHelp(cmd.Argument),
             "reset" => StartNewGame(),
+            "r" => CreateOutput(o => {}),
             "q" or "qu" or "qui" => CreateOutput(o =>
                 o.AddLine("In order to prevent unnecessary screaming, please type 'quit' in its entirety to quit.")),
             "quit" => ShowEntryMenu(true),
@@ -142,15 +192,41 @@ public class GameEngine
         if (exit == null)
             return CreateOutput(o => o.AddLine("You cannot go that way!"));
 
+        // Try direct room first
         var targetRoom = _store.GetRoomById(exit);
+
+        // If not a room, check if it's a door/marker that links to another room
+        if (targetRoom == null)
+            targetRoom = ResolveDoorExit(exit);
+
         if (targetRoom == null)
             return CreateOutput(o => o.AddLine("You cannot go that way!"));
 
-        player.CurrentRoomId = exit;
+        player.CurrentRoomId = targetRoom.Id;
         _store.UpdatePlayer(player);
 
-        _logger?.LogInformation("Moved {Direction} to {Room}", dir, exit);
-        return ShowCurrentRoom();
+        _logger?.LogInformation("Moved {Direction} to {Room}", dir, targetRoom.Id);
+        var output = ShowCurrentRoom();
+        _events.OnRoomEntry(targetRoom.Id, output);
+        return output;
+    }
+
+    private Room? ResolveDoorExit(string exitId)
+    {
+        // Markers/doors are objects with a "linked" field pointing to another marker
+        // The linked marker's location is the destination room
+        var doorUid = _store.GetObjectUid(exitId);
+        if (doorUid == 0) return null;
+
+        var door = _store.GetObjectByUid(doorUid);
+        if (door == null || door.Linked == 0) return null;
+
+        // The linked object is in the destination room
+        var linkedDoor = _store.GetObjectByUid(door.Linked);
+        if (linkedDoor == null) return null;
+
+        // The linked door's location is the UID of the destination room
+        return _store.GetRoomByUid(linkedDoor.Location);
     }
 
     private GameOutput ShowCurrentRoom()
@@ -319,6 +395,11 @@ public class GameEngine
         if (item == null)
             return CreateOutput(o => o.AddLine("Get what?"));
 
+        // Check form-based inventory limits
+        var restriction = _commands.CheckGetRestriction();
+        if (restriction != null)
+            return CreateOutput(o => o.AddLine(restriction));
+
         return CreateOutput(o =>
         {
             int rloc = _store.GetRoomUid(_store.Player.CurrentRoomId);
@@ -347,6 +428,11 @@ public class GameEngine
     {
         if (item == null)
             return CreateOutput(o => o.AddLine("Wield what?"));
+
+        // Check form-based wield restrictions
+        var restriction = _commands.CheckWieldRestriction();
+        if (restriction != null)
+            return CreateOutput(o => o.AddLine(restriction));
 
         return CreateOutput(o =>
         {
@@ -555,6 +641,7 @@ public class GameEngine
     private GameOutput StartNewGame()
     {
         _store.Reset(_baseRooms, _baseMobiles, _baseObjects);
+        _events.Reset();
         var player = _store.Player;
         player.IsInEntryMenu = false;
         player.IsDead = false;
