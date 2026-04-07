@@ -261,8 +261,11 @@ public class MetaTxtParser
 
     private static string StripDirSuffix(string dirPart)
     {
-        // Direction parts have trailing " x:\" format — strip last 3 chars (e.g., " s:")
-        return dirPart.Length > 3 ? dirPart.Substring(0, dirPart.Length - 3) : dirPart;
+        // Direction parts have trailing " x:" format (e.g., "room2 s:") — strip last 3 chars
+        // If the part is 3 chars or fewer, it's just the next direction prefix (e.g., " s:") meaning empty exit
+        if (dirPart.Length <= 3)
+            return "";
+        return dirPart.Substring(0, dirPart.Length - 3).Trim();
     }
 
     private static Dictionary<Direction, string> BuildExits(string n, string s, string e, string w, string u, string d)
