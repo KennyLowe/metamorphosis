@@ -33,7 +33,8 @@ public class GameEngineTests
 
         Assert.True(output.ShouldClearOutput);
         Assert.NotEmpty(output.Lines);
-        Assert.Equal(PlayerState.StartingRoom, _store.Player.CurrentRoomId);
+        // After new game, player is moved from prologue (room85) to room1
+        Assert.Equal("room1", _store.Player.CurrentRoomId);
         Assert.False(_store.Player.IsInEntryMenu);
     }
 
