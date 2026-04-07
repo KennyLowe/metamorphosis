@@ -1,0 +1,32 @@
+@inject IJSRuntime JS
+
+<div class="command-row">
+    <input id="cmd-input" type="text" class="command-input" @bind="CommandText" @bind:event="oninput"
+           @onkeydown="HandleKeyDown" placeholder="" autocomplete="off" />
+    <button class="send-button" @onclick="SendCommand">Send Command</button>
+</div>
+
+@code {
+    [Parameter] public EventCallback<string> OnCommand { get; set; }
+
+    private string CommandText { get; set; } = "";
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !string.IsNullOrEmpty(CommandText))
+        {
+            await SendCommand();
+        }
+    }
+
+    private async Task SendCommand()
+    {
+        if (!string.IsNullOrEmpty(CommandText))
+        {
+            var cmd = CommandText;
+            CommandText = "";
+            await OnCommand.InvokeAsync(cmd);
+            await JS.InvokeVoidAsync("gameInterop.focusElement", "cmd-input");
+        }
+    }
+}

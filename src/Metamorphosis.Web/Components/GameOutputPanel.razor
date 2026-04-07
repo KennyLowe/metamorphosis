@@ -1,0 +1,39 @@
+@inject IJSRuntime JS
+
+<div id="output-scroll" class="output-scroll">
+    <div class="output-content">
+        @foreach (var line in Lines)
+        {
+            <p class="output-line">
+                @foreach (var segment in line)
+                {
+                    <span class="@GetColorClass(segment.Color)">@segment.Text</span>
+                }
+            </p>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<List<TextSegment>> Lines { get; set; } = new();
+
+    private string GetColorClass(GameColor color) => color switch
+    {
+        GameColor.Black => "color-black",
+        GameColor.Blue => "color-blue",
+        GameColor.Cyan => "color-cyan",
+        GameColor.Green => "color-green",
+        GameColor.Magenta => "color-magenta",
+        GameColor.Red => "color-red",
+        GameColor.White => "color-white",
+        GameColor.Yellow => "color-yellow",
+        GameColor.Brown => "color-brown",
+        GameColor.DarkGreen => "color-darkgreen",
+        _ => "color-default"
+    };
+
+    public async Task ScrollToBottom()
+    {
+        await JS.InvokeVoidAsync("gameInterop.scrollToBottom", "output-scroll");
+    }
+}

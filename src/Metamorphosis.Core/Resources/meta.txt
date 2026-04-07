@@ -1,0 +1,2480 @@
+id:room1 n:\room2 s:\room72 e:\room3 w:\room4 u:\ d:\mounds
+flags:outdoors
+name:A Woodland Clearing
+"  You are standing in the middle of a large &+Gclearing# in a &+gforest#.  The
+&+Catmosphere# is incredible and the whole area is alive with vibrant
+&+Gplants# and &+Canimals# scurrying around on their business.
+There are several &+Cmounds# of &+yearth# lying around the &+Gclearing#, probably
+formed by moles, or some other vermin.  To the &+Gnorth# are the sounds of
+a &+Cwaterfall#, while to the &+Geast# and &+Gwest# there is nothing but &+gforest#
+stretching on and on, seemingly never ending."
+
+id:room2 n:\ s:\room1 e:\room5 w:\ u:\ d:\
+flags:outdoors
+name:&+MR&+Ca&+Bi&+Rn&+Gb&+Yo&+Gw&+M Clearing
+"  The sheer volume of &+Cwater# cascading down from the top of the canyon
+staggers you, and you take a moment to appreciate the true beauty of
+the area, and decide that this would be the perfect spot for a picnic
+some time.  The &+Ylight &+Rs&+Gp&+Bl&+Ma&+Cy&+Ys# off the &+Cwaterfall# and you feel a tremendous
+sense of inner peace welling up in you as you watch the &+Cfish# jump,
+leaving &+Cr&+Bi&+Cp&+Bp&+Cl&+Be&+Cs# in the &+Cwater# behind them.  To the &+Gsouth# is a large
+&+Gclearing# in the &+gforest#, and the &+Criver# continues off to the &+Geast# where
+it seems to become quieter."
+
+id:room3 n:\ s:\ e:\room6 w:\room1 u:\ d:\
+flags:outdoors
+name:In the Forest
+"  The sounds of animals break the silence as you stroll through the &+gforest#,
+whistling a happy tune.  These are the moments life is worth living for.
+The &+gforest# continues on to the &+Geast#, and to the &+Gwest# you can make
+out a large &+Gclearing#.
+$beetlex
+  Scuttling along through the forest you become aware of the great feeling of
+serenity which this place illicits in you.  Sounds of predators break the
+silence but you pay them no heed, for no harm can come to you in a place
+such as this.  The forest continues on to the east, and to the west you
+can make out a large clearing."
+
+id:room4 n:\ s:\ e:\room1 w:\room7 u:\ d:\
+flags:outdoors
+name:In the Forest
+" If you thought the &+Gclearing# was &+Mpeaceful#, the &+gforest# is the embodiment of
+serenity.  Calm washes over you, and you feel completely at one with the
+animal kingdom.  An enormous &+gtree# is visible far to the &+Gwest#, and a
+&+Gclearing# in the &+gforest# is to the &+Geast#."
+
+id:room5 n:\ s:\ e:\room8 w:\room2 u:\ d:\
+flags:outdoors
+name:Along the River
+"  The &+Criver# is calmer now, further from the &+Cwaterfall#, and you can now make
+out the bottom of the &+Bstream# through the crystal clear &+Cwater#.  Otters and
+beavers lazily float along in the &+Cwater#, with &+Cfish# darting around 
+them, quick flashes of silver reflecting off their skin.  The &+Criver# runs
+into a large pool to the &+Geast#, the &+Cwaterfall# to the &+Gwest# filling it
+almost to the banks."
+
+id:room6 n:\room9 s:\room10 e:\ w:\room3 u:\ d:\marker6
+flags:outdoors
+name:The Edge of the Forest
+"  You reach the edge of the &+gforest# and are greeted by a beautiful &+Bblue &+Bsky#,
+which was previously hidden by the &+gtrees#.  The &+Gfoliage# is particularly &+Glush#
+here, and &+gvines# &+Gsnake# up the &+gtrees#, winding their way up in an
+intertwining display of &+Yc&+Go&+gl&+Yo&+Gu&+gr#.  You think you can make out something
+caught in the &+gvines#, but you can't quite reach high enough to see properly.
+There is a &+Chole# in the base of the &+gtree#, but it is too small to even fit
+your hand in.  To the &+Gnorth# the &+gforest# continues on inexorably, while it
+thins out a lot to the &+Gsouth# where you hear the loud snarls of predators.
+$beetlex
+  You reach the edge of the &+gforest# and are greeted by a beautiful &+Bblue &+Bsky#,
+which was previously hidden by the &+gtrees#.  The &+Gfoliage# is particularly &+Glush#
+here, and &+gvines# &+Gsnake# up the &+gtrees#, winding their way up in an
+intertwining display of &+Yc&+Go&+gl&+Yo&+Gu&+gr#.  You think you can make out something
+caught in the &+gvines#, but you can't quite reach high enough to see properly.
+There is a &+Chole# in the base of the &+gtree#, but it seems dark and foreboding
+to your senses.  To the &+Gnorth# the &+gforest# continues on inexorably, while it
+thins out a lot to the &+Gsouth# where you hear the loud snarls of predators.
+$snakex
+  You reach the edge of the &+gforest# and are greeted by a beautiful &+Bblue &+Bsky#,
+which was previously hidden by the &+gtrees#.  The &+Gfoliage# is particularly &+Glush#
+here, and &+gvines# &+Gsnake# up the &+gtrees#, winding their way up in an
+intertwining display of &+Yc&+Go&+gl&+Yo&+Gu&+gr#.  You think you can make out something
+caught in the &+gvines#, but you can't quite reach high enough to see properly.
+There is a &+Chole# in the base of the &+gtree#, but it is too narrow to even fit
+in, thin as you are.  To the &+Gnorth# the &+gforest# continues on inexorably, while
+it thins out a lot to the &+Gsouth# where you hear the loud snarls of predators.
+$fishx
+  You reach the edge of the &+gforest# and are greeted by a beautiful &+Bblue &+Bsky#,
+which was previously hidden by the &+gtrees#.  The &+Gfoliage# is particularly &+Glush#
+here, and &+gvines# &+Gsnake# up the &+gtrees#, winding their way up in an
+intertwining display of &+Yc&+Go&+gl&+Yo&+Gu&+gr#.  You think you can make out something
+caught in the &+gvines#, but you can't quite reach high enough to see properly.
+There is a &+Chole# in the base of the &+gtree#, but it is too small fit in.
+To the &+Gnorth# the &+gforest# continues on inexorably, while it thins out a lot to
+the &+Gsouth# where you hear the loud snarls of predators.
+$birdx
+  You reach the edge of the &+gforest# and are greeted by a beautiful &+Bblue &+Bsky#,
+which was previously hidden by the &+gtrees#.  The &+Gfoliage# is particularly &+Glush#
+here, and &+gvines# &+Gsnake# up the &+gtrees#, winding their way up in an
+intertwining display of &+Yc&+Go&+gl&+Yo&+Gu&+gr#.  You think you can make out something
+caught in the &+gvines#, but you can't quite reach high enough to see properly.
+There is a &+Chole# in the base of the &+gtree#, but it is too small to even fit
+your wing in.  To the &+Gnorth# the &+gforest# continues on inexorably, while it
+thins out a lot to the &+Gsouth# where you hear the loud snarls of predators."
+
+id:room7 n:\ s:\ e:\room4 w:\room59 u:\ d:\
+flags:outdoors
+name:Beneath the Tree
+"  This is, without a doubt, the biggest &+gtree# you have ever seen, and no
+doubt the biggest &+gtree# you will ever see.  The &+ytrunk# has a diameter of
+roughly thirty meters, and it stretches so high that you wouldn't be
+surprised if it left the confines on the atmosphere, and continued on
+into the heavens.  Flocks of birds of all different species cover the 
+&+gtree# from top to bottom, feeding on the insects in the dead &+Cbranches #
+under the tree and in an instant you see the symbiosis in play
+here.  The &+gtree# seems to be living off the bird &+Ldroppings# deposited on
+its &+ytrunk#, and you watch in fascination as one bird does its business
+which is instantly absorbed by the bark, without leaving a trace.
+The birds live on the berries produced by this process, and together
+the &+gtree# and birds live in harmony. 
+$birdx
+  You stand beneath the mother tree, your home and protector.  One of the
+mightiest trees in the forest, your family have a formidable protector from
+the elements.  Friends and colleagues dart around the tree, feeding on insects
+crawling around in the bark, in turn nourishing the tree with the waste.
+Up in the tree is home, east is the forest and west leads to a quiet field.
+$beetlex
+  Above you, reaching into the heavens is an enormous tree teeming with life.
+Ants, slugs, snails, other beetles and the like swarm over the tree, making
+nests or feeding, while at the same time trying to avoid being eaten by the
+birds which also swarm over the tree.  It's a dangerous life in such an
+environment, and you're glad you don't live in it."
+
+id:room8 n:\ s:\ e:\ w:\room5 u:\ d:\room11
+flags:outdoors
+name:The Crystal Pool
+"  Here the &+Cwater# from the &+Cwaterfall# fills a large &+Cpool# that fairly teems
+with life.  The &+Cwater# is so clear, that you can actually hear the &+Ylight#
+reflecting off the &+Cwater#.  Squinting your eyes you can barely make out
+something glinting at the bottom of the &+Cwater#.  You can go &+Gdown# and
+enter the &+Cpool#, but it looks &+Rhazardous# for a human, and you are pretty
+sure that the currents would pull you under and far &+Gdown# where the pressure
+would fill your lungs with &+Cwater# quickly.
+$snakex
+  Here the &+Cwater# from the &+Cwaterfall# fills a large &+Cpool# that fairly teems
+with life.  The &+Cwater# is so clear, that you can actually hear the &+Ylight#
+reflecting off the &+Cwater#.  Squinting your eyes you can barely make out
+something glinting at the bottom of the &+Cwater#.  You can go &+Gdown# and
+enter the &+Cpool#, but it looks &+Rhazardous# for a snake, and you are pretty
+sure that the currents would pull you under and far &+Gdown# where the pressure
+would fill your lungs with &+Cwater# quickly.
+$fishx
+  Here the &+Cwater# from the &+Cwaterfall# fills a large &+Cpool# that fairly teems
+with life.  The &+Cwater# is so clear, that you can actually hear the &+Ylight#
+reflecting off the &+Cwater#.  Squinting your eyes you can barely make out
+something glinting at the bottom of the &+Cwater#.  The pool is just down from
+you, but you are unable to move in your current form and can see no way of
+getting into the pool before you run out of air...
+$birdx
+  Here the &+Cwater# from the &+Cwaterfall# fills a large &+Cpool# that fairly teems
+with life.  The &+Cwater# is so clear, that you can actually hear the &+Ylight#
+reflecting off the &+Cwater#.  Squinting your eyes you can barely make out
+something glinting at the bottom of the &+Cwater#.  You can go &+Gdown# and
+enter the &+Cpool#, but it looks &+Rhazardous# for a bird, and you are pretty
+sure that the currents would pull you under and far &+Gdown# where the pressure
+would fill your lungs with &+Cwater# quickly.
+$beetlex
+  Here the &+Cwater# from the &+Cwaterfall# fills a large &+Cpool# that fairly teems
+with life.  The &+Cwater# is so clear, that you can actually hear the &+Ylight#
+reflecting off the &+Cwater#.  Squinting your eyes you can barely make out
+something glinting at the bottom of the &+Cwater#.  You can go &+Gdown# and
+enter the &+Cpool#, but it looks &+Rhazardous# for a beetle, and you are pretty
+sure that the currents would pull you under and far &+Gdown# where the pressure
+would fill your lungs with &+Cwater# quickly."
+
+id:room9 n:\room12 s:\room6 e:\ w:\ u:\ d:\
+flags:outdoors
+name:The Forest Continues
+"  On and on goes the &+gforest#, seemingly never ending rows and rows of &+gtrees#
+stop you from straying from the &+ypath#, forcing you onwards to your
+ultimate goal. An enormous &+Lcastle# comes into sight.  It isn't the size
+that is odd, so much as the fact that it is constructed entirely from &+ywood#
+packed with &+Lmud#, while still appearing majestic.  This must be where the
+Chimera lives, lording over the land.  To the &+Gnorth# the land has been
+ravaged, and only the small area of &+gforest# behind you remains, as yet,
+untouched."
+
+id:room10 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:Hunting Grounds
+"  You step into the &+Gclearing#, but this one is not quite as &+Mpeaceful# as the
+first one, and you are instantly set upon by &+Rlions# and &+Rtigers# and &+Rbears#.
+They quickly rip you to shreds, devouring you in seconds.
+$beetlex
+  You step into the &+Gclearing#, but this one is not quite as &+Mpeaceful# as the
+first one, and you are instantly set upon by vicious &+Rbirds#.  They quickly rip 
+you to shreds, devouring you in seconds."
+
+id:room11 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:In the Pool
+"  As you enter the pool, the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt# reaches hold of you, and &+Rdrags# you to
+the bottom.  All your equipment is lost as you fight to get back to the
+surface.  &+CWater# quickly fills your lungs and you drown quickly,
+your last glimpse of life being an enormous pike biting into your arm.
+$snakex
+  As you enter the pool, the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt# reaches hold of you, and &+Rdrags# you to
+the bottom.  All your equipment is lost as you fight to get back to the
+surface.  &+CWater# quickly fills your lungs and you drown quickly,
+your last glimpse of life being an enormous pike biting into you.
+$beetlex
+  As you enter the pool, the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt# reaches hold of you, and &+Rdrags# you to
+the bottom.  All your equipment is lost as you fight to get back to the
+surface.  &+CWater# quickly fills your tiny lungs and you drown quickly,
+your last glimpse of life being an enormous pike swallowing you.
+$birdx
+  As you enter the pool, the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt# reaches hold of you, and &+Rdrags# you to
+the bottom.  All your equipment is lost as you fight to get back to the
+surface.  &+CWater# quickly fills your lungs and you drown quickly,
+your last glimpse of life being an enormous pike biting into you."
+
+id:room12 n:\room13 s:\room9 e:\ w:\ u:\ d:\
+flags:outdoors
+name:Path to the Castle
+"  A &+Ltowering castle# looms ahead to the &+Gnorth#, a malevolent entity that exudes
+&+Ldarkness#.  The very air seems alive with &+Revil#, and you duck from sight as
+you spot several large, very vicious looking birds circling the &+Lcastle#.  Raw
+power almost oozes from the castle, clearly the warlock is extremely strong."
+
+id:room13 n:\room14 s:\room12 e:\ w:\ u:\ d:\
+flags:outdoors
+name:The Castle Gates
+"  Large imposing gates stand before you, creaking in the &+Bwind#.  Obviously the
+warlock doesn't employ anyone to maintain the castle &+ygrounds#, as the
+&+yground# is as barren as a eunuch.  The castle is to the &+Gnorth#."
+
+id:room14 n:\drawbridge_in s:\room13 e:\room16 w:\markerdoor u:\ d:\
+flags:outdoors nomobiles
+name:Outside the Castle
+"  You can smell the fetid stench of &+Rdeath# in the &+Bair#.  This is a far
+cry from the &+gforest# far to the &+Gsouth#.  You spy a dilapidated guardhouse to
+the &+Geast#, and an slightly less dilapidated storeroom to the &+Gwest# which
+appears much more stable."
+
+id:room15 n:\ s:\drawbridge_out e:\ w:\ u:\room18 d:\
+flags:noweather
+name:The Inner Hall
+"  &+BWind &+Cw&+Lh&+Ci&+Ls&+Ct&+Ll&+Ce&+Ls# through the corridors, &+Bblowing# drapes and tapestries around,
+extinguishing all &+Ycandles# and &+Ytorches# in the area.  &+REvil# permeates the very
+rock, and you find yourself shuddering involuntarily.  Clearly the warlock
+has tremendous &+Rpower# for you be able to feel his presence at this
+distance."
+
+id:room16 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:The Guardhouse
+"  As you enter, you set off a slight tremor in the &+yfloorboards#, which
+upsets a &+Cspade# leaning against a wall, which in turn &+Rknocks# a supporting
+&+ybeam# out of place, causing the roof to cave in on you, &+Rcrushing# you
+instantly."
+
+id:room17 n:\ s:\ e:\markerdoor2 w:\ u:\ d:\
+flags:noweather
+name:The Storeroom
+"  The storeroom is almost empty, aside from a few sacks of &+Ygrain# that
+would be too heavy for you to carry.  A &+Cshelf# lines one of the walls, a
+few odds and ends in it.  Some &+Ccobwebs# span the room from wall to wall, the
+process of dozens of years of spiders working in unison.  The floor is made of
+rotting &+Cplanks# that creak underfoot.
+$snakex
+  The storeroom is pretty much empty, aside from a few sacks of &+Ygrain# that
+would be too heavy for you to carry.  A &+Cshelf# lines one of the walls, a
+few odds and ends in it.  Some cobwebs span the room from wall to wall, the
+process of dozens of years of spiders working in unison.  The floor is made of
+rotting &+Cplanks# that creak under you."
+
+id:room18 n:\room19 s:\ e:\ w:\ u:\ d:\room15
+flags:noweather
+name:Halfway to the Warlock
+"  Nearing the heart of the castle, you can feel the evil pulsing through the
+stone walls like a thing alive, almost as if the castle itself was
+impregnated with pure evil, a malignant entity in its own right."
+
+id:room19 n:\ s:\room18 e:\ w:\ u:\ d:\
+flags:noweather
+name:Throne Room
+"  The home of the warlock, &+Revil# ruler of all the five lands. The room
+is dominated by a giant throne of ice# designed purely to intimidate.
+Aside from the throne, the room is completely empty.  The Warlock is obviously a 
+creature of few comforts."
+
+id:room20 n:\room22 s:\ e:\room33 w:\room31 u:\room8 d:\
+flags:underwater
+name:In the Pool
+"  The pool is so clear that you can see right to the other side of the &+Cwater#
+kingdom.  Pond &+gweed# sways lazily in the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt&+Cs# and, not for the first
+time in this adventure, a feeling of serenity washes over you, but at the
+same time you can sense unease from the other &+Cfish#.  To the &+Gnorth# is the
+main domain of the &+Cfish#, while the &+Gwest# leads &+Cupstream# to the &+Cwaterfall#.
+$snakex
+  The pool is so clear that you can see right to the other side of the &+Cwater#
+kingdom.  Pond &+gweed# sways lazily in the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt&+Cs# and, not for the first
+time in this adventure, a feeling of serenity washes over you, but at the
+same time you can sense unease from the &+Cfish#, but that's probably because
+you are a predator to them.  To the &+Gnorth# is the main domain of the &+Cfish#,
+while the &+Gwest# leads &+Cupstream# to the &+Cwaterfall#.  Travelling 
+&+Cupstream# against the current might prove difficult for you though, as you
+aren't a fantastic swimmer in this form. With some alarm, you realise that
+the currents are too strong and you are unable to exit the water...
+$beetlex
+  The pool is so clear that you can see right to the other side of the &+Cwater#
+kingdom.  Pond &+gweed# sways lazily in the &+Bc&+Cu&+Br&+Cr&+Be&+Cn&+Bt&+Cs# and, not for the first
+time in this adventure, a feeling of serenity washes over you, but at the
+same time you feel uneasy being near the &+Cfish#, but that's probably because
+you are prey to them.  To the &+Gnorth# is the main domain of the &+Cfish#,
+while the &+Gwest# leads &+Cupstream# to the &+Cwaterfall#.  Travelling 
+&+Cupstream# against the current might prove difficult for you though, as you
+aren't a fantastic swimmer in this form. With some alarm, you realise that
+the currents are too strong and you are unable to exit the water..."
+
+id:room21 n:\ s:\ e:\ w:\ u:\ d:\
+flags:underwater
+name:Limbo
+"Welcome to Limbo.
+It's a bit rubbish."
+
+id:room22 n:\room23 s:\room20 e:\room24 w:\ u:\ d:\
+flags:underwater
+name:The Stream
+"  This is the &+BHigh Stream#, the centre of all things &+Cfishy# in the world. &+CFish
+&+Ydart# around all over the place, from shop to shop, buying and selling just
+as humans do. You know that you would never have recognised this place for
+what it was without your &+Cpiscine# perspective, and if you were in your human
+form, you would probably have cast in a net, killed all these &+Cfish# and
+eaten them. How harsh humans are to the poor animals. The palace is to the
+&+Gnorth#, and shops line the street on either side of you.
+$snakex
+  Swimming along, further and further from the safety of the bank you arrive
+in what appears to be just another dull patch of river. Nothing of interest
+seems to be here, except for a crack in the rock to the &+Geast#. The river
+continues to the &+Gnorth# and &+Gsouth#.
+$beetlex
+  Swimming along, further and further from the safety of the bank you arrive
+in what appears to be just another dull patch of river. Nothing of interest
+seems to be here, except for a crack in the rock to the &+Geast#. The river
+continues to the &+Gnorth# and &+Gsouth#."
+
+id:room23 n:\room25 s:\room22 e:\ w:\ u:\ d:\
+flags:underwater
+name:The High Stream
+"  You continue along the &+Cstream# to the palace, hoping to stop off in a few
+shops on the way, but strangely they are &+Rlocked# and &+ybarred#. 
+A &+Csign# has been attached to one of the doors, no other clues are visible
+as to why the shops are shut.
+$snakex
+  Yet another barren area, nothing but pond weed and small fish darting
+around to be seen. With nothing of interest to be found here, you have
+no choice but to continue on to the &+Gnorth# or &+Gsouth#.
+$beetlex
+  Yet another barren area, nothing but pond weed and small fish darting
+around to be seen. With nothing of interest to be found here, you have
+no choice but to continue on to the &+Gnorth# or &+Gsouth#."
+
+id:room24 n:\ s:\ e:\ w:\room22 u:\ d:\
+flags:underwater
+name:Accessory Shop
+"  This area seems to be carved out of the rockface itself, and has &+Cshelves#
+running around the perimeter. Perhaps long ago, while this place was above
+water, it was a shop of some sort, now it appears to be part of a long
+forgotten civilisation which must have vanished underwater years ago.
+$fishx
+  This shop is famous for having anything that you could possibly want, be
+it a &+Gwintergreen# from the &+Cfrozen# lands of the &+Gnorth#, or a genuine &+yTrojan#
+helmet. You want it, they have it, or so the motto goes. Looking around
+you see that the &+Cshelves# are bare, and the shop empty."
+
+id:room25 n:\room27 s:\room23 e:\ w:\ u:\ d:\
+flags:underwater
+name:Palace Entrance
+"  The plantlife here sways lazily in the water, gentle ripples making it sway
+to and fro, gently soothing you. The entrance to the palace lies to the
+&+Gnorth#, while to the &+Gsouth# lies the main part of the stream."
+
+id:room26 n:\ s:\ e:\ w:\ u:\ d:\
+name:Limbo
+"Welcome to Limbo.
+It's a bit rubbish."
+
+id:room27 n:\room30 s:\room25 e:\room28 w:\room29 u:\ d:\
+flags:underwater
+name:Inner Courtyard
+"  The courtyard is beautifully decorated with tastefully chosen &+gweed# and
+other nice &+Gplants#. The door to the &+Ythrone# room is open in front of you,
+and the whole palace seems devoid of life. Something is definitely wrong
+here. There are rooms to the &+Geast# and &+Gwest# which seem to &+Yf&+Cl&+Yi&+Cc&+Yk&+Ce&+Yr#
+with an inner &+Ylight#."
+
+id:room28 n:\ s:\ e:\ w:\room27 u:\ d:\
+flags:underwater
+name:Flickering Room
+"  The walls &+Yglow# with an inner &+Ylight#, making this place seem somehow holy.
+A sign shows that this is a shrine to the god &+MFishnu#, the great fish
+god of &+Ylightning# who sends the &+Brain# and &+Ylightning# that refill the &+Blakes#
+and &+Cstreams# after the &+Revil &+Ysun# has evaporated the &+Cwater# during the day. "
+
+id:room29 n:\ s:\ e:\room27 w:\ u:\ d:\
+flags:underwater
+name:Flickering Room
+"  The walls &+Yglow# with an inner &+Ylight#, making this place seem somehow holy.
+A sign shows that this is a &+Caltar# to the god &+MHerb#, the great fish god
+of &+gweed# which the &+Cfish# feed on and grow strong on."
+
+id:room30 n:\ s:\room27 e:\ w:\ u:\ d:\
+flags:underwater
+name:Throne Room of the Fish King
+"  Now you know where all the &+Cfish# were, and why all the shops were locked.
+Every single &+Cfish# in the land is now here, petitioning the king for
+something, but you can't quite hear what above the tumult. The burden of being
+a monarch becomes blatantly obvious to you as you watch the King trying to
+deal with each request in turn."
+
+id:room31 n:\ s:\ e:\room20 w:\room32 u:\ d:\
+flags:underwater
+name:Up the Stream
+"  You struggle up the &+Cstream#, pushing hard against the current, making
+headway against the current. Water flows around you, prodding and caressing
+you, a constant massage to soothe your body. To the &+Gwest# is the
+&+Cwaterfall#, and to the &+Geast#, the deep, calm pool."
+
+id:room32 n:\ s:\ e:\room31 w:\ u:\ d:\
+flags:underwater
+name:Under the Waterfall
+"  You are being pounded and pounded by the &+Cwaterfall#, and you struggle to
+keep yourself from being washed away &+Cdownstream#. There doesn't seem to be
+anything of note in this room, but you can see something glinting at the
+top of the &+Cwaterfall#. If only you could get up there..."
+
+id:room33 n:\room34 s:\ e:\ w:\room20 u:\ d:\
+flags:underwater
+name:Hidden Crack
+"  A large crack in the rock appears to lead to a massive structure which 
+towers high above, preventing water from flowing downstream. The abomination
+built by the beavers is cutting off the lifeblood of the fish, and preventing
+families from returning to their spawning grounds."
+
+id:room34 n:\ s:\room33 e:\ w:\ u:\ d:\
+flags:underwater
+name:Base of the Dam
+"  The technological terror that the beavers have constructed looms before
+you, stopping the &+Ysalmon# from entering from the &+Csea#, and spawning.
+Throughout history artificial constructions have threatened the habitats
+of animals, though it's more usual for humans to be the cause, not other
+animals as in this case."
+
+id:room35 n:\room36 s:\ e:\ w:\ u:\hole_up d:\
+flags:nomobiles noweather
+name:In the Small Hole
+"  You squeeze through the &+Chole#, and are greeted by a dull &+yearthen# room.
+There is an exit in the &+Gnorth# wall, and the &+gforest# is &+Gup# from you,
+although you are too large to fit back through the hole.
+$beetlex
+  You squeeze through the &+Chole#, and are greeted by a dull &+yearthen# room.
+There is an exit in the &+Gnorth# wall, and the &+gforest# is &+Gup# from you. 
+$snakex
+  You squeeze through the &+Chole#, and are greeted by a dull &+yearthen# room.
+There is an exit in the &+Gnorth# wall, and the &+gforest# is &+Gup# from you."
+
+id:room36 n:\ s:\room35 e:\room37 w:\room38 u:\ d:\
+flags:noweather
+name:The Tunnel
+"  The tunnels are burrowed out of the earth by years of hard toil by
+generations of snakes. Claustrophobia grips you briefly before you regain
+control, there appears to be nothing of interest here. The tunnels continue
+to the &+Geast# and &+Gwest#."
+
+id:room37 n:\ s:\ e:\ w:\room36 u:\ d:\
+flags:death noweather
+name:Unstable Tunnel
+"  This appears to be a long abandoned section of tunnel, and looking at the
+numerous rockfalls around you, you can see why. This area of the tunnel
+system is apparently extremely unstable, and you make to leave, but as
+you do so you set off a slight tremor in the ground and the roof caves
+in on you. You are crushed out of existence by the earth in seconds."
+
+id:room38 n:\room39 s:\ e:\room36 w:\ u:\ d:\
+flags:noweather
+name:Tunnels
+"  The tunnel system continues on, seemingly endlessly winding on and on
+inextricably towards the centre of the peaceful &+gsnake# kingdom. The
+tunnel leads to the &+Geast# and the &+Gnorth#."
+
+id:room39 n:\room40 s:\room38 e:\ w:\ u:\ d:\
+flags:noweather
+name:Tunnels
+"  A featureless earthen tunnel looms before you into the distance, never
+ending and never changing. Perfectly smooth and flawless walls greet you
+as far as you can see to the &+Gnorth# and &+Gsouth#."
+
+id:room40 n:\ s:\room39 e:\room42 w:\room41 u:\ d:\
+flags:noweather
+name:The Tunnel Branches
+"  Here the tunnel has three exits, one to the &+Gwest#, one to the &+Gsouth#
+and to the &+Geast#. The tunnel to the &+Geast# is filled with a bright
+light whereas the tunnel to the &+Gwest# looks eerily dark and gloomy."
+
+id:room41 n:\ s:\ e:\room40 w:\ u:\ d:\
+flags:noweather
+name:Gloomy Room
+"  This room seems to serve no purpose other than to contribute to feelings
+of doom and depression. You can well imagine that this is a place where
+many snakes hard up on their luck have come to end it all. Perhaps it would
+be best to leave before you are overcome with such a compulsion."
+
+id:room42 n:\room43 s:\ e:\ w:\room40 u:\ d:\
+flags:noweather
+name:End of the Tunnels
+"  You have reached the end of the tunnels, and the entry to the land of
+&+Gsnakes#. A glorious land filled with everything a &+Gsnake# could want. Despite
+this, the place seems eerily quiet, a hollow shell of what it once was."
+
+id:room43 n:\room45 s:\room42 e:\room44 w:\ u:\ d:\
+flags:noweather
+name:Heart of the Colony
+"  This is the hub of activity for the &+Gsnake# colony, but you can barely see
+any &+Gsnakes# in the area, and stranger yet, you see no children. Baby &+Gsnakes#
+are notorious for wanting to explore everything, but you can see no sign
+of them anywhere. A small castle hollowed out of the &+yearth# is to the
+&+Gnorth#, and a side alley to the &+Geast#."
+
+id:room44 n:\ s:\ e:\room47 w:\room43 u:\ d:\
+flags:noweather
+name:Side Alley
+"  This is a dirty back alley of the sort you would expect to find in any
+city, animal or human. Homeless &+Gsnakes# lie at the side of the street,
+trying to sell their wares to any passers by. Given their emaciated look,
+it would appear that they are not having much luck."
+
+id:room45 n:\room46 s:\room43 e:\ w:\ u:\ d:\
+flags:noweather
+name:Outside the Castle
+"  This is the most simple castle that you have ever seen in your travels,
+carved from the &+yearth#, like all &+Gsnake# homes have been since they were
+forced underground by the expansion of the birds of prey, it consists of a
+single room, but this one room manages to convey more majesty than all the
+other palaces and castles in the realm put together. This single room is
+to your &+Gnorth#."
+
+id:room46 n:\ s:\room45 e:\ w:\ u:\ d:\
+flags:noweather
+name:Inside the Castle
+"  The home and place of work for the &+GSnake King#, you are awed by the sense
+of power and justice radiating from the walls. Snakes are renowned throughout
+the realms of freedom for their fair and impartial judicial system,
+though they are often held in contempt by other species for their anti drum
+court policies."
+
+id:room47 n:\room48 s:\room49 e:\ w:\room44 u:\ d:\ 
+flags:noweather
+name:Nearing the Hole
+"  You can smell on the air that you are nearing a &+Chole# that leads to above
+&+yground#, and this gives you major cause for concern. The &+Gsnake# domain is
+meant to be sealed off from the outside world, with the only way in and
+out being through the tunnels you entered by which are too large for predators.
+You can smell something dead to the &+Gsouth# of you. A tunnel leads &+Gnorth# to
+the &+Chole#.
+$snakex
+  You can taste on the air that you are nearing a &+Chole# that leads to above
+&+yground#, and this gives you major cause for concern. The &+Gsnake# domain is
+meant to be sealed off from the outside world, with the only way in and
+out being through the tunnels you entered by which are too large for predators.
+You can smell something dead to the &+Gsouth# of you. A tunnel leads &+Gnorth# to
+the &+Chole#."
+
+id:room48 n:\ s:\room47 e:\ w:\ u:\hole_voles d:\
+flags:noweather
+name:At the Hole
+"  A large &+Chole# leads upwards out of the &+Gsnakes# land, to the home of the
+&+rvoles#. It allows the &+rvoles# to come and steal &+Gsnake &+Ceggs# whenever they so
+wish, with little to fear from the &+Gsnakes# who are, by nature, a peaceable
+people. A door leads &+Gsouth#."
+
+id:room49 n:\room47 s:\ e:\ w:\ u:\ d:\
+flags:negregen
+name:The Rotting Corpse
+"  This is where a titanic battle between a &+rvole# and the whole &+Gsnake# army
+took place. The &+rvole# lost, but with &+rhorrific# casualties to the army. The
+&+Gsnakes# are a &+Mpeaceful# people and hate &+rviolence#, but in this case it was
+forced upon them by the &+rvoles#."
+
+id:room50 n:\ s:\ e:\ w:\ u:\ d:\hole_marker
+flags:death
+name:Land of the Voles
+"  The &+rvoles# see you and instantly set upon you, tearing you limb from limb
+in seconds. You are now dead."
+
+id:room51 n:\room53 s:\room55 e:\room54 w:\cell_door_in u:\ d:\room7
+name:In the Tree
+"  You are balanced precariously on a high branch in the tree, able to spy
+out the whole forest around you. You see a vast river flowing to the
+northeast leading towards a towering structure which looms malignantly
+over the forest. The bird song flooding the tree does little to quell the
+feelings of unease building in you."
+
+id:room52 n:\ s:\ e:\cell_door_out w:\ u:\ d:\
+name:Enclosed Branch
+"  This branch is surrounded by many other solid branches blocking off any way
+out. The light is provided by small glowing insects floating around,
+presumably this is their natural habitat.
+$birdx
+  This &+ybranch# has been turned into a formidable holding area, escape seems
+unlikely, as there are tightly woven walls all around and above you. You will 
+eventually be taken from this place to the Avian Council where your fate will
+be decided."
+
+id:room53 n:\ s:\room51 e:\ w:\ u:\ d:\
+name:Avian Council Building
+"  This is where the &+Yavian# council convenes every day to debate the topics
+affecting the lives of birds in modern society. &+CNotices# and&+C posters# hang on
+the wall, a &+Csign# shows that this is also where court hearings are held.
+Many a &+Mbird# has been sentenced to death in this room."
+
+id:room54 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:Unstable Air Currents
+"  You plunge into the &+Cair#, struggling against the wind. For a few moments
+you manage to stay aloft, before plummeting to the &+yground#, battered by the
+eddies in the &+Cair#. You see an enormous pointy rock coming up to meet you
+just before it shatters your brains all over the &+yground#."
+
+id:room55 n:\room51 s:\ e:\ w:\door_in_shop u:\ d:\
+name:Long Branch
+"  You stand on a long, thick &+ybranch# with all the &+ytwigs# that would have once
+grown on the top side of it cut off to give a clear &+ypath# to walk down. On
+the &+ybranch# above you, you can see a small pile of &+ytwigs#, and to the &+Gwest#
+there is a merchants shop."
+
+id:room56 n:\ s:\ e:\ w:\ u:\ d:\
+name:Limbo
+"Welcome to Limbo.
+It's a bit rubbish."
+
+id:room57 n:\ s:\ e:\door_shop w:\ u:\ d:\
+name:Merchant's Shop
+"  A typical avian merchant's shop greets you, the shelves fairly barren and empty.
+It looks like business hasn't been particularly good recently, and it shows in
+the face of the propriator."
+
+room58 n:\ s:\ e:\ w:\ u:\ d:\
+name:On the Uppermost Branch
+" Standing on the highest branch of the tallest tree affords you a spectacular
+view. Small birds fly around, going about their business with nary a care
+in the world. The branches up here seem made of a slightly less brittle
+wood than lower down the tree."
+
+id:room59 n:\ s:\ e:\room7 w:\ u:\ d:\hole_beetle
+flags:outdoors
+name:Open Field
+"  You stand in an open field, insects running around beside you, in and out
+of a small &+Chole# in the &+yground#. &+rBeetles# seem to be the prevalent form of
+life, and you can smell the faint lingering smell of &+ydung# in the &+Cair#,
+although none is in evidence."
+
+id:room60 n:\room61 s:\ e:\room62 w:\room65 u:\hole_beetle_up d:\
+flags:nomobiles
+name:In the Hole
+"  You are in a tiny &+Chole# that only a beetle could possibly fit into. You
+nose around on the &+yground#, the scent of dung drawing you to the &+Geast#
+and &+Gwest#. You can also see an exit to the &+Gnorth#."
+
+id:room61 n:\room64 s:\room60 e:\ w:\ u:\ d:\ 
+name:Living Area
+"  This is the communal living area for all the &+ydung# &+rbeetles# in the &+gforest#.
+Here they eat, sleep and are merry, but they don't seem so merry today.
+Perhaps you should determine why they all seem so upset. Visible exits are
+to the &+Gnorth# and &+Gsouth#."
+
+id:room62 n:\ s:\ e:\ w:\room60 u:\ d:\
+name:Dung Storeroom
+"  This is where all the &+ydung# that the &+rbeetles# have collected over the years
+is stored, but it appears to have all gone missing!"
+
+id:room63 n:\ s:\ e:\ w:\ u:\ d:\
+name:Limbo
+"Welcome to Limbo.
+It's a bit rubbish."
+
+id:room64 n:\ s:\room61 e:\ w:\ u:\marker64 d:\
+name:Chamber of Worship
+"  This large room is dominated by one piece of &+Cdung# which the occupants of
+the room seem to be worshipping fervently, repeating the same movements over 
+and over again, chanting a ritualistic mantra. A tunnel leads &+Gup# to above
+ground."
+
+id:room65 n:\ s:\ e:\room60 w:\ u:\ d:\
+name:Dung Storeroom
+"  This is where all the &+ydung# that the &+rbeetles# have collected over the years
+is stored, but it appears to have all gone missing!"
+
+id:room66 n:\room67 s:\ e:\ w:\ u:\ d:\marker66
+flags:outdoors
+name:Road to the Farmyard
+"  The road to the farm stretches ahead of you, the chimney pot of the
+farmhouse spewing black smoke in the distance. The dirt track was obviously
+made for heavy duty transport, the ruts in it showing some sort of human
+involvement.
+$beetlex
+  The road to the farm stretches ahead of you, you'd better get a move on,
+it's going to take you a long time to get there on your little legs. Exits
+are to the &+Gnorth# and &+Gdown#."
+
+id:room67 n:\ s:\room66 e:\room68 w:\room69 u:\ d:\
+flags:outdoors
+name:Farmyard
+"  You stand in an open farmyard, the domain of the Nal Haseem beetles.
+Currently it appears deserted, with nothing to see but a few scattered 
+leaves being blown helter skelter across the cobbled stones of the yard. 
+There is a farmhouse to your &+Geast#, and a large barn to the &+Gwest#."
+
+id:room68 n:\ s:\ e:\marker68 w:\room67 u:\ d:\
+flags:outdoors
+name:The Farmhouse
+"  You stand at the farmhouse door, a small sliver of &+Ylight# breaking through
+the crack under the door. It might be a dangerous place for a defenceless
+animal to enter. The door appears to be locked and there is no way you can fit
+through the crack under the door.
+$beetlex
+  You stand at the farmhouse door, a small sliver of &+Ylight# breaking through
+the crack under the door. It might be a dangerous place for a defenceless
+animal to enter. You can crawl under the door to the &+Geast#, or return back to
+the &+Gwest#."
+
+id:room69 n:\ s:\ e:\room67 w:\room71 u:\ d:\
+flags:outdoors
+name:The Barn
+"  The barn is an immense structure with large wooden doors. You can faintly
+smell &+ydung# through small cracks in the &+ywood#, a tantalising reminder
+of your quest to help the Nal T'Voth.
+$snakex
+  The barn is a huge structure, with large doors. You can taste the &+ydung#
+through the tiny cracks in the &+ywood#, cracks which it might be possible for
+you to sneak under.
+$beetlex
+  The barn is a huge structure, with large doors. You can smell the &+ydung#
+through the tiny cracks in the &+ywood#, cracks which it might be possible for
+you to sneak under."
+
+id:room70 n:\ s:\ e:\ w:\marker70 u:\ d:\
+name:Inside the Farmhouse
+"  A large open &+Yfireplace# dominates the room, and the farmer sits asleep in a
+rocking chair in front of it, a cup of tea on the table beside him. You
+spot an antique &+Cgun# affixed to one of the walls, far out of reach for you.
+$birdx
+  A large open &+Yfireplace# dominates the room, and the farmer sits asleep in a
+rocking chair in front of it, a cup of tea on the table beside him. You
+spot an antique &+Cgun# affixed to one of the walls.
+$beetlex
+  A large open &+Yfireplace# dominates the room, and the farmer sits asleep in a
+rocking chair in front of it, a cup of tea on the table beside him. You
+spot an antique &+Cgun# affixed to one of the walls, far out of reach for you.
+You can leave the farmhouse to the &+Gwest#."
+
+id:room71 n:\ s:\ e:\room69 w:\ u:\ d:\
+name:Inside the Barn
+"  This is the domain of the Nal Haseem clan, scourge of the Jal T'Voth and
+treacherous thieves of dung which rightfully belongs to all the dung
+beetles. The power of the Nal Haseem is great though, and the Jal T'Voth
+are unable to challenge them."
+
+id:room72 n:\room1 s:\ e:\ w:\ u:\ d:\
+name:Toadstool Clearing
+"  You stand amidst a ring of &+Mtoadstools# which &+Ys&+Mp&+Ya&+Mr&+Yk&+Ml&+Ye# with hidden &+Mmagic#. No,
+these aren't &+Ymagic# mushrooms, it is in fact a &+Cfairy &+Mring#, where &+Cfairies#
+perform their &+Mmagical# rites to dispel &+Revil#. You can feel the &+Mmagical#
+eddies &+Ys&+Cw&+Yi&+Cr&+Yl&+Ci&+Yn&+Cg# around you, and a feeling of &+Gharmony# with your surroundings
+pervades your very being."
+
+id:room73 n:\ s:\ e:\ w:\ u:\ d:\
+flags:underwater
+name:Top of the Waterfall
+"  After your incredible &+Rleap# up here, you are quite exhausted, but the view
+more than makes up for it. You circle some &+Crocks# and look out over the &+Gland#,
+able to see everything happening. In the distance you see someone fighting
+the &+CYeti# while another adventurer triumphantly raises &+YExcalibur# aloft.
+The current is too strong to proceed up the &+Cstream#, so the only way to go
+seems to be the way you came."
+
+id:room74 n:\ s:\ e:\ w:\ u:\ d:\
+name:Limbo
+"Welcome to Limbo.
+It's a bit rubbish."
+
+id:room75 n:\ s:\ e:\ w:\room97 u:\ d:\
+name:Toadstool Clearing
+"  You stand amidst a ring of &+Mtoadstools# which &+Ys&+Mp&+Ya&+Mr&+Yk&+Ml&+Ye# with hidden &+Mmagic#. No,
+these aren't &+Ymagic# mushrooms, it is, in fact, a &+Cfairy &+Mring#, where &+Cfairies#
+perform their &+Mmagical# rites to dispel &+Revil#. You can feel the &+Mmagical#
+eddies &+Ys&+Cw&+Yi&+Cr&+Yl&+Ci&+Yn&+Cg# around you, and a feeling of &+Gharmony# with your
+surroundings pervades your very being."
+
+id:room76 n:\ s:\ e:\ w:\ u:\ d:\
+flags:underwater
+name:Halfway up the Waterfall
+"  You struggle against the current of the waterfall, but it seems to be a
+battle you cannot win. The inexorable tug of the current is forcing you back
+down to the bottom and you estimate that you will only be able to stay here for
+a few seconds at best."
+
+id:room77 n:\ s:\ e:\ w:\ u:\ d:\
+flags:outdoors
+name:Beside the Top of the Waterfall
+"  You take in your surroundings, enraptured in the beauty of the place. The
+forest spans below you, the castle a looming fortress in the distance.
+You see the stream below you, and the waterfall cascading down into it.
+There appears to be no way down the cliff face."
+
+id:room78 n:\ s:\ e:\ w:\ u:\ d:\
+flags:outdoors
+name:On a Rock
+"  You land with a &+Rthud# on a rock at the bottom of the waterfall. All around 
+you the &+Cwater# foams from the cascading &+Bwaterfall# you just fell down.
+Gazing into the &+Bwater#, you see dozens of hungry fish circling the rock.
+There appears to be no hope of escape for you."
+
+id:room79 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:Inside a Fish's Stomach
+"  Somehow you seem to have managed to get yourself swallowed by a fish as an
+immortal, and are inside the fish's stomach. The stench is almost intolerable,
+and you find the atmosphere constricting to say the least."
+
+id:room80 n:\ s:\ e:\ w:\ u:\ d:\
+flags:death
+name:Inside a Bird's Stomach
+"  Somehow you seem to have managed to get yourself swallowed by a bird as an
+immortal, and are inside the bird's stomach. The stench is almost intolerable,
+and you find the atmosphere constricting to say the least."
+
+id:room81 n:\ s:\ e:\ w:\ u:\ d:\
+flags:negregen
+name:Jail
+"  This is the maximum security jail of the birds, there is a &+Cdoor# in the
+&+Geast# wall, but there is no way to open it. The walls are soundproofed
+and the room itself is freezing cold. You doubt you'll survive very long
+in here, which is probably the idea."
+
+id:room82 n:\ s:\ e:\ w:\ u:\ d:\
+flags:
+name:Cavern of Despair
+" This cavern is filled with the souls of those foolish enough to venture
+down here. The wails and screams of tortured millions echo resoundingly off
+the stone walls and you feel a terrible panic well in your breast. Clearly
+it was very foolish to enter this place."
+
+id:room83  n:\ s:\ e:\door_shop w:\ u:\ d:\
+flags:
+name:Merchant's Shop
+" The shop is in complete disarray, twigs, boxes and other goods litter the
+floor, obviously the shopkeeper didn't go down without a fight. There appears
+to be nothing of note here now, looters having pillaged the place already."
+
+id:room84 n:\marker84 s:\room96 e:\ w:\ u:\ d:\
+flags:
+name:A Dirt Road
+"  &+YSunshine# bathes your face even as a &+ccooling# breeze keeps its warmth in check 
+while you survey the scene laid out before you. The path stretches inexorably on 
+far to the &+Csouth# to your homeland of Ahn Shamar, while just to the &+Cnorth# is a 
+pretty &+Ct&+Mo&+Ca&+Md&+Cs&+Mt&+Co&+Mo&+Cl# ring at the edge of a cliff. The road around you is devoid of 
+defining features."
+
+id:room85 n:\ s:\ e:\ w:\ u:\ d:\
+flags:
+name:Your Quest Nears its End
+" For decades now your homelands have been ravaged by the tyranny of an evil
+&+Rwarlock#. Many have set out to on the quest to defeat him, all have failed.
+You are &+CKardak Greystag#, seasoned warrior and the latest to embark on this
+most perilous of journeys. Years of questing behind you, you have built
+yourself to the very peak of strength and endurance and now, finally,
+will see the quest complete and the &+Rwarlock# slain."
+
+id:room86 n:\ s:\marker86 e:\ w:\ u:\ d:\
+flags:
+name:A Toadstool Ring
+"  You stand amidst a ring of &+Mtoadstools# which &+Ys&+Mp&+Ya&+Mr&+Yk&+Ml&+Ye# with hidden &+Mmagic#. No,
+these aren't &+Ymagic# mushrooms, it is in fact a &+Cfairy &+Mring#, where &+Cfairies#
+perform their &+Mmagical# rites to dispel &+Revil#. You can feel the &+Mmagical#
+eddies &+Ys&+Cw&+Yi&+Cr&+Yl&+Ci&+Yn&+Cg# around you, and a feeling of &+Gharmony# with your surroundings
+pervades your very being. The road gives way to a &+lsheer cliff# ahead..."
+
+id:room87 n:\ s:\ e:\room88 w:\ u:\ d:\
+flags:
+name:Sleeping Quarters
+"  This cramped room barely has space for the &+Cbed# which is jammed into the
+south-western corner.  The rest of the room is sparsely decorated, with nary a 
+picture on the &+Cwalls# or a mat underfoot.  Nevertheless it does a good enough
+job of blocking out the elements, affording a &+Mcomfortable# sleep if nothing else.
+An open door leads out to the &+Ceast#."
+
+id:room88 n:\room90 s:\ e:\room89 w:\room87 u:\ d:\
+flags:
+name:Upstairs Corridor
+"  &+YSunlight# streams through slight breaks in the &+Croof# above you, throwing &+Yb#r&+Yi#g&+Yh#t
+shapes against the corridor walls. There are &+Cdoors# to the east and west, and
+the corridor leads on to the &+Cnorth# where the sounds of &+Mmusic# and &+cjoviality#
+grow ever louder."
+
+id:room89 n:\ s:\ e:\ w:\room88 u:\ d:\
+flags:
+name:Sleeping Quarters
+"  This cramped room barely has space for the &+Cbed# which is jammed into the
+south-western corner.  The rest of the room is sparsely decorated, with nary a 
+picture on the &+Cwalls# or a mat underfoot.  Nevertheless it does a good enough
+job of blocking out the elements, affording a &+Mcomfortable# sleep if nothing else.
+An open door leads out to the &+Cwest#."
+
+id:room90 n:\ s:\room88 e:\ w:\ u:\ d:\room91
+flags:
+name:Upstairs Landing
+"  &+YSunlight# streams through slight breaks in the &+Croof# above you, throwing &+Yb#r&+Yi#g&+Yh#t
+shapes against the landing walls. A staircase leads &+Cdown# where the sounds of &+Mmusic#
+and &+claughter# echo joyously around, while to the &+Csouth# a corridor leads to the
+inn's sleeping quarters. "
+
+id:room91 n:\ s:\ e:\ w:\room92 u:\room90 d:\
+flags:
+name:The Inn
+"  A &+Rroaring &+Yf&+Ri&+Yr&+Re# dominates the northern wall of this expansive inn, the crackling
+of &+ywood# providing a comforting ambient background to the sounds of &+Glaughter#
+and &+Mmerriment# that bounce around off the walls and ceiling. A &+Cbar# runs along
+the full length of the eastern wall, while to the west a &+Cdoor# leads out onto the 
+streets. A &+Cstaircase# leads upwards to an area set aside for rest and relaxation."
+
+id:room92 n:\room94 s:\ e:\room91 w:\room93 u:\ d:\
+flags:
+name:Dirt Road
+"  The streets are packed with well-wishers and &+Crevellers#, all come to see you off
+and wish you luck on your &+Gquest#. To the &+Cwest# is a &+Lblacksmith's# shop where the
+clang of &+cmetal# on &+cmetal# rings &+Ysonorously# through the air, while from the inn to
+the &+Ceast# the sound of &+Mfestivities# ring louder still. The road extends to the
+&+Cnorth# where more inhabitants of this town wait to wish you well, while yet others
+block the way out of town to the south."
+
+id:room93 n:\ s:\ e:\room92 w:\ u:\ d:\
+flags:
+name:Blacksmith's Forge
+"  The oppressive &+rheat# pouring from the &+Rforge# that fills this building is almost as
+unbearable as the blinding &+Ylight# that issues forth from it. The &+Cblacksmith# is busy
+beating out what looks like a &+Cchestplate# with skillful and measured strokes of his
+hammer, beads of sweat pouring off his &+Lblackened# skin as he does so. The muffled
+cheers of wellwishers can be heard through the door to the &+Ceast#."
+
+id:room94 n:\room95 s:\room92 e:\ w:\ u:\ d:\
+flags:
+name:Dirt Road
+"  The streets are packed with well-wishers and &+Crevellers#, all come to see you off
+and wish you luck on your &+Gquest#. All around you people press in around, desperate
+to be in the presence of the one who promises to deliver them from the &+Rtyranny# 
+under which they live. The road leads both &+Cnorth# and &+Csouth#, both directions
+thronging with jubilant crowds. &+LSmoke# curls lazily up into the sky from two 
+structures to the &+Csouth#."
+
+id:room95 n:\room96 s:\room94 e:\ w:\ u:\ d:\
+flags:
+name:Dirt Road
+"  The streets are packed with well-wishers and &+Crevellers#, all come to see you off
+and wish you luck on your &+Gquest#. All around you people press in around, desperate
+to be in the presence of the one who promises to deliver them from the &+Rtyranny# 
+under which they live. The road leads both &+Cnorth# and &+Csouth#, the crowd seeming
+far more densely populated to the former and tapering off to the &+Cnorth#."
+
+id:room96 n:\room84 s:\room95 e:\ w:\ u:\ d:\
+flags:
+name:Dirt Road
+"  A few villagers cheer you on from the path leading &+Csouth#, shouting forth words
+of &+Yencouragement# and expressing their &+Madulation# as exuberantly as their lungs
+can manage. To the &+Cnorth# the path winds on for many miles, tapering off to the 
+horizon and the homeland of the &+Revil &+LWarlock#."
+
+id:room97 n:\ s:\ e:\ w:\ u:\ d:\
+flags:
+name:Your Quest Complete
+"  A lifetime of &+rhardship# and struggle is over, already the &+Ldark cloud# which
+blotted the &+Maura #of the lands around you is lifting, making way for a new era of
+&+Cpeace# and &+Yprosperity#. It is time for you to put down your &+Cblade# and take up
+the mantle of king, ensuring through just rule and kind hand that your subjects 
+never again have to &+Rsuffer# as they have done for so many years.
+
+&+MThat's it, the game is over. You won :)#"
+
+
+MOBILES
+
+id:min_mob
+ex:
+/
+
+id:snake_beggar
+pname:The Beggar
+altname:beggar
+type:snake
+speed:0
+loc:room44
+desc:A juggling beggar is here with a look of intense concentration on his face.
+ex:
+For someone with limbs to juggle three pebbles is a fairly simple feat,
+for a snake to do it beggars belief!  You watch in awe and rapture as he sends
+the pebbles up into the air, never letting them hit the ground, over and over
+again./
+
+id:haseem
+pname:The Nal Haseem
+altname:haseem
+type:beetle
+loc:room71
+speed:0
+desc:The &+CNal Haseem# beetles stand here, menacingly.
+ex:
+There's no way you should ever be in a room with this mob and able to
+examine him unless you're cheating./
+
+id:warlock
+pname:The Warlock
+loc:room19
+altname:warlock
+type:warlock
+speed:0
+desc:The &+CWarlock# leers at you, awaiting your next move.
+ex:
+The cruel creature that perverted the lands surrounding you, the Warlock knows
+no pity, no mercy, no remorse./
+
+id:warlock_broken
+pname:The Warlock
+loc:room21
+altname:warlock
+type:warlock
+speed:0
+desc:The &+CWarlock# cowers in the corner, &+rbroken# and &+cweeping# for his life.
+ex:
+The cruel creature that perverted the lands surrounding you, the Warlock knows
+no pity, no mercy, no remorse. &+RIt is time for you to show him the same.#/
+
+id:fish_king
+pname:The King
+altname:king
+type:fish
+loc:room26
+speed:0
+desc:The &+Cking# of the fish floats here, wringing his metaphorical hands nervously.
+ex:
+His kingdom is under siege by &+rbeavers#, you can't blame him for being worried./
+
+id:fish_king2
+pname:The King
+altname:king
+type:fish
+loc:room26
+speed:0
+desc:The &+Cking# of the fish floats here, a slight bounce to his swim.
+ex:
+He doesn't seem quite so worried now that his kingdom is safe./
+
+id:judge
+pname:The Judge
+altname:judge
+type:bird
+speed:0
+loc:room53
+desc:The imperial &+Cjudge# of the avian empire is here.
+ex:
+He peers at you with an expression that looks somewhat like disdain./
+
+id:shopkeeper
+pname:The Shopkeeper
+altname:shopkeeper
+type:bird
+loc:room57
+speed:0
+desc:The &+Cshopkeeper# is shivering in the corner.
+ex:
+He seems very cold, as the branches around here offer little protection./
+
+id:shopkeeper_warm
+pname:The Shopkeeper
+altname:shopkeeper
+type:bird
+loc:room21
+speed:0
+desc:An eagle eyed &+Cshopkeeper# rushes over to help you.
+ex:
+He seems to be going out of his way to get you everything you need./
+
+
+id:shopkeeper_broken
+pname:The Shopkeeper
+altname:shopkeeper
+loc:room26
+type:bird
+speed:0
+desc:The hunched &+Loutline# of the &+Lshopkeeper# huddles in the corner.
+ex:
+He sits mumbling about injustice and pesky kids.../
+
+id:snake_king
+pname:The King
+altname:king
+speed:0
+type:snake
+loc:room46
+desc:The &+CKing# of the &+Gsnakes# regards you haughtily.
+ex:
+His people have long been persecuted by the &+Rvoles# and he believes you have
+come to put and end to their suffering./
+
+id:fish
+pname:The Fish
+altname:fish
+type:fish
+speed:5
+loc:room22
+desc:A &+Cfish# swims here without a care in the world.
+ex:
+He seems intent on doing nothing but laze around all day, probably a student./
+
+
+id:fish2
+pname:The Fish
+altname:fish
+type:fish
+speed:5
+loc:room31
+desc:A &+Cfish# swims here, seemingly oblivious to his surroundings.
+ex:
+Swishing his tail back and forth, gently swimming through the water, this fish
+seems to have no worries.  He must be stoned./
+
+id:deer
+pname:The Deer
+altname:deer
+type:deer
+speed:5
+loc:room3
+desc:A spotted &+Cdeer# lopes through the forest.
+ex:
+The &+Cdeer# seems agitated about something and skitters this way and that, never
+stopping for more than a few seconds at a time./
+
+id:flopsy
+pname:flopsy
+type:rabbit
+speed:5
+loc:room7
+desc:A &+Cflopsy# rabbit bounces through the undergrowth.
+ex:
+&+CFlopsy# is the eldest of her and her siblings, and carries with her an air of
+suspicion./
+
+id:mopsy
+pname:mopsy
+speed:5
+type:rabbit
+loc:room7
+desc:&+CMopsy# the rabbit bounces through the undergrowth.
+ex:
+&+CMopsy# is the most sensible of her and her siblings, and carries with her an air
+of charm./
+
+id:cottontail
+pname:Cottontail
+altname:cottontail
+speed:5
+type:rabbit
+loc:room7
+desc:&+CCottontail# the rabbit bounces through the undergrowth.
+ex:
+&+CCottontail# is the youngest of her and her siblings, and carries with her an air
+of naivety./
+
+id:beetle_king
+pname:The King
+altname:king
+type:beetle
+speed:0
+loc:room64
+desc:The &+Cking# of the beetles stands here, looking more than a little weary.
+ex:
+The king regards you as a king should, briefly and without comment./
+
+id:barmaid
+pname:The Barmaid
+altname: barmaid
+type:human
+speed:0
+loc:room91
+desc:A &+Cbuxom barmaid# stands behind the &+Cbar#, waiting to serve you.
+ex:
+Her ample &+Mcleavage# ensures that she receives plenty of tips from the patrons.../
+
+id:blacksmith
+pname:The Blacksmith
+altname: blacksmith
+type:human
+speed:0
+loc:room93
+desc:The &+CBlacksmith# is pounding away furiously at a piece of metal.
+ex:
+Sweat drips from his brow and flies from his hands as he &+bhammers# away at a piece
+of &+Cmetal#, shaping it as only a true artisan can./
+
+id:max_mob
+ex:
+/
+
+OBJECTS
+valid flags are noget, iscont, door. Valid fields are loc, name, desc, ex, carried, wielded, worn, incont, linked, state
+
+id:min_obj
+ex:
+/
+
+id:revellers92
+name:revellers
+loc:room92
+flags:noget
+ex:
+The &+Crevellers# line the streets, cheering you onwards!/
+
+id:revellers94
+name:revellers
+loc:room94
+flags:noget
+ex:
+The &+Crevellers# line the streets, cheering you onwards!/
+
+id:revellers95
+name:revellers
+loc:room95
+flags:noget
+ex:
+The &+Crevellers# line the streets, cheering you onwards!/
+
+id:revellers96
+name:revellers
+loc:room96
+flags:noget
+ex:
+The &+Crevellers# line the streets, cheering you onwards!/
+
+id:forge
+name:forge
+loc:room93
+flags:noget
+ex:
+&+rHeat# and &+Lsmoke# roll off the &+Cforge# in equal measure, but while the latter escapes
+through a hole in the roof, the &+rheat# simply builds to uncomfortable levels./
+
+id:chestplate
+name:chestplate
+loc:room93
+flags:noget
+ex:
+The &+Cblacksmith& is still working on this piece, white &+Yhot #sparks flying from it 
+as his hammer makes contact again and again./
+
+id:door93
+name:door
+loc:room93
+flags:noget
+ex:
+The &+Cdoor# leads to the east./
+
+id:cauldron
+name:cauldron
+loc:room72
+flags:noget container
+desc:A large &+Ccauldron# sits in the middle of the toadstool ring.
+ex:
+The &+Ccauldron# is placed atop a stack of dry &+ykindling#.  You can feel &+Mmagical#
+energies coursing through the &+Gclearing#./
+
+id:kindling
+name:wood
+loc:room72
+flags:noget lightable extinguish
+state:1
+desc:The &+Ckindling# burns away under the cauldron. 
+ex:
+The &+Ckindling# is designed to &+Rheat# the contents of the &+Lcauldron# when &+Ylit#./
+
+id:toadstool
+name:toadstool
+loc:room21
+desc:A large &+Mpurple &+Ctoadstool# lies here unattended.
+ex:
+Gazing into the &+Rt#o&+Ra#d&+Rs#t&+Ro#o&+Rl# you see &+Yswirling# eddies of &+Mmagic#./
+
+id:toadstools
+name:toadstools
+flags:noget
+loc:room86
+name:toadstools
+desc:
+ex:
+The toadstools shimmer with &+cirridescent# light./
+
+id:godslayer
+name:godslayer
+flags:weapon
+loc:room87
+state:1
+desc:The mighty &+Cgodslayer# is thrust into the ground here, throbbing with &+Marcane &+Rpower#.
+desc1:The mighty &+Cgodslayer# is laid at the end of the &+Cbed#, throbbing with &+Marcane &+Rpower#.
+ex:
+The &+Cgodslayer# ranks among the most powerful weapons known to man, capable of felling even the most powerful of foes./
+
+id:shadowshield
+name:shadowshield
+flags:wearable
+loc:room87
+state:1
+desc:The infamous &+Lshadowshield# crackles with &+cmystical# energies on the ground here.
+desc1:The infamous &+Lshadowshield# hangs on the door, crackling with &+cmystical# energies.
+ex:
+Forged in aeons past, when the magics of this realm were at their height, the shadowshield can guard against even the most brutal onslaught./
+
+id:demonhelm
+name:demonhelm
+flags:wearable
+loc:room87
+state:1
+desc:A glowing red &+Rdemonhelm# has been cast aside here.
+desc1:A glowing red &+Rdemonhelm# has been hung on a peg on the &+Cwall#.
+ex:
+The demonhelm is made from the skin of the god-demon Baphomet cast over a frame of pure mithril, impervious to all weapons and offensive magics./
+
+id:armour
+name:dragonscale
+flags:wearable
+loc:room87
+state:1
+desc:The &+gdragonscale# armour has been reverently placed on the ground in front of you.
+desc1:The &+gdragonscale# armour has been reverently placed at the foot of the &+Cbed#.
+ex:
+Crafted from the scales of a thousand dragons in a time of deep magics and terrifying monsters, the dragonscale armour protects its wearer from all manner of attacks./
+
+id:potion
+name:potion
+loc:room87
+flags:edible
+name:potion
+state:1
+desc:A large healing &+Cpotion# lies at your feet.
+desc1:A large healing &+Cpotion# lies on the floor.
+ex:
+While foul-smelling barely begins to describe the noxious concoction contained within, this potion can heal even the most mortal of wounds instantly.
+There's enough for at least a hundred sips./
+
+id:sign2
+name:sign
+flags:noget
+loc:room23
+ex:
+All shops are to be shut until further notice in this time of national crisis,
+all fish to report to the castle immediately./
+
+id:sacks
+name:sacks
+loc:room17
+flags:noget
+ex:
+Each of these &+Csacks# would require more strength than you can muster to carry./
+
+id:marker86
+name:markerdoor86
+flags:noget
+loc:room86
+state:0
+linked:marker84
+ex:
+/
+
+id:marker84
+name:markerdoor84
+flags:noget
+loc:room84
+state:0
+linked:marker86
+ex:
+/
+id:door_in_shop
+name:markerdoorshop
+state:0
+flags:noget
+loc:room55
+linked:door_shop
+ex:
+/
+
+id:door_shop
+name:markerdoorshop2
+flags:noget
+state:0
+loc:room57
+linked:door_in_shop
+ex:
+/
+
+id:marker68
+name:markerdoor68
+flags:noget
+loc:room68
+state:1
+linked:marker70
+ex:
+/
+
+id:marker70
+name:markerdoor70
+flags:noget
+loc:room70
+state:1
+linked:marker68
+ex:
+/
+
+id:marker6
+name:markerdoor6
+flags:noget
+loc:room6
+state:1
+linked:marker82
+ex:
+/
+
+id:marker82
+name:markerdoor82
+flags:noget
+loc:room82
+state:1
+linked:marker6
+ex:
+/
+
+id:marker66
+name:markerdoor66
+flags:noget
+loc:room66
+state:1
+linked:marker64
+ex:
+/
+
+id:marker64
+name:markerdoor64
+flags:noget
+loc:room64
+state:1
+linked:marker66
+ex:
+/
+
+id:pedestal
+name:pedestal
+flags:noget
+loc:room64
+desc:To one side of the room stands a &+Cpedestal#.
+ex:
+Atop the &+Cpedestal# sits a large &+Ctome#./
+
+id:tome
+name:book
+flags:noget
+loc:room64
+state:0
+ex:
+An abridged copy of the history of the Dung Beetles, it tells of how
+the Jal T'Voth and Nal Haseem beetle clans forged a mighty alliance,
+utterly destroying all other beetle clans and claiming the dung of the
+forest for themselves.  The tome goes on to tell how the Nal Haseem were
+not content with sharing their wealth and power, and greed overcame them.
+They sacked and pillaged the lands of the Jal T'Voth and stole all their
+dung, leaving but one piece, the sacred dung of the ages, for they could
+carry no more./
+
+id:sign
+name:sign
+flags:noget
+loc:room53
+ex:
+&+CC o u r t  R o o m#./
+
+id:notice
+name:notice
+flags:noget
+loc:room53
+ex:
+&+MNest for sale, good price, enquire within./
+
+id:poster
+name:posters
+flags:noget
+loc:room53
+ex:
+                                 &+RW A N T E D
+
+Several nights ago, a precious orb was stolen from the museum.  Any information
+leading to the return of the orb will be handsomely rewarded.
+
+Return of the orb itself will, assuming the returner is not the thief, lead
+to an even greater reward./
+
+id:cottontail
+name:cottontail
+altname:corpse
+flags:noget
+loc:room21
+desc:The &+Rcorpse# of Cottontail is here.
+ex:
+You see the &+Mworm-infested&+R corpse# of Cottontail./
+
+id:dam
+name:dam
+loc:room34
+flags:noget
+state:0
+desc:The dam towers above you, stretching to the surface and beyond.
+desc2:A massive hole has been ripped in the side of the dam, allowing water to flow.
+ex:
+The beavers have constructed this dam with the intention of blocking
+off all flow of water to the fish kingdom./
+
+id:diamond
+name:diamond
+loc:room26
+desc:A large, multifaceted &+Cdiamond# sits here.
+ex:
+Valuable beyond your wildest dreams, this &+Cdiamond# would be worth a
+fortune./
+
+id:hole_up
+name:hole
+linked:mounds
+state:1
+flags:noget
+loc:room35
+ex:
+A &+Chole# in the ground above you with a very small circumference./
+
+id:hole
+name:ground
+flags:noget
+loc:room1
+ex:
+A &+Chole# in the ground with a very small circumference./
+
+id:hole_herring
+name:hole
+flags:noget
+loc:room6
+desc:
+ex:
+A &+Ldark# &+Chole# is in the &+ybase# of the &+gtree#./
+
+id:staff
+name:staff
+flags:weapon
+loc:room21
+desc:A large &+Yoaken&+C staff# has been discarded here.
+ex:
+The &+Cstaff# hums with power and feels slightly &+Wcold# to the touch./
+
+id:hole_beetle
+name:hole
+flags:noget
+loc:room59
+state:1
+linked:hole_beetle_up
+desc:
+ex:
+Gazing into the &+Chole#, you can see &+Rbeetles# scurrying about under the &+yearth#./
+
+id:hole_beetle_up
+name:hole
+flags:noget
+state:1
+loc:room60
+linked:hole_beetle
+desc:
+ex:
+This &+Chole# leads up above &+yground#./
+
+id:limestone
+name:stone
+flags:
+incont:panel
+desc:A chunk of &+Cstone# is on the &+yground# here.
+ex: 
+A large chunk of &+Wstone#, partially eroded by years of closeness to &+Bwater#.
+It appears soluble in water./
+
+
+id:mounds
+name:earth
+flags:noget
+linked:hole_up
+state:1
+loc:room1
+desc:
+ex:
+As you stare at the &+Chole# in the &+ymound# of &+yearth#, a &+Gsnake# slithers &+Gdown# it./
+
+id:waterfall
+name:waterfall
+flags:noget container
+loc:room2
+desc:
+ex:
+&+CS&+Bp&+Cr&+Ba&+Cy# from the &+Bwaterfall# bounces across your cheeks./
+
+id:vial_snake
+name:vial
+state:0
+loc:room74
+desc:A &+Ggreen &+Cvial# containing a thick liquid lies here.
+desc1:A &+Ggreen &+Cvial# lies here.
+ex:
+The liquid inside the &+Cvial# has an almost &+Revil# feel to it./
+
+id:vial_beetle
+name:flask
+state:0
+incont:rocks
+desc:A &+ybrown &+Cflask# containing a thick liquid lies here.
+desc1:A &+ybrown &+Cflask# lies here.
+ex:
+The liquid inside the &+Cflask# has an almost &+Rhomely# feel to it./
+
+id:vial_bird
+name:tube
+state:0
+incont:branches
+desc:A &+Mpurple &+Ctube# containing a thick liquid lies here.
+ex:
+The liquid inside the &+Ctube# gives you a feeling of great freedom./
+
+id:vial_fish
+name:jar
+state:0
+loc:room20
+desc:A &+Bblue &+Cjar# containing a free flowing liquid lies here.
+desc1:A &+Cjar# lies here.
+ex:
+The liquid inside the &+Cjar# gives you a feeling of buoyancy./
+
+id:pool
+name:pool
+flags:noget container
+loc:room8
+desc:
+ex:
+The &+Bpool# shimmers in the sunlight./
+
+id:flask_empty
+name:hipflask
+flags:container
+loc:room21
+desc:A &+Chipflask# lies on the ground here.
+ex:
+This &+Chipflask# can hold a fair bit of &+Bfluid#./
+
+id:watermarker
+flags:noget
+loc:room21
+ex:
+Wtf are you doing with this!?/
+
+id:water_limestone
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:water
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:water2
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:water3
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:water4
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:water5
+name:water
+flags:food liquid
+loc:room26
+desc:A pool of &+Cwater# has collected here.
+ex:
+The &+Cwater# is crystal clear and sparkling./
+
+id:watermarker2
+name:watermarker
+flags:noget
+loc:room21
+ex:
+Wtf are you doing with this?!/
+
+id:alkaline
+name:solution
+altname:liquid
+flags:liquid
+loc:room21
+desc:A powerful alkaline &+Csolution# has been discarded here.
+ex:
+The base created when a stone is dissolved in water is fairly alkaline and will 
+neutralise any acids it comes into contact with./
+
+id:pebble1
+name:stone
+altname:blue
+flags:
+loc:snake_beggar
+desc:A &+Bblue# stone lies on the ground.
+ex:
+This &+Wstone# was until recently used by an extremely dextrous &+Gsnake# as a
+juggling ball./
+
+id:pebble2
+name:rock
+altname:red
+flags:
+loc:snake_beggar
+desc:A smooth &+Rred# rock lies on the ground.
+ex:
+This &+Wrock# was until recently used by an extremely dextrous &+Gsnake# as a
+juggling ball./
+
+id:pebble3
+name:pebble
+altname:green
+loc:snake_beggar
+state:0
+desc:A &+Ggreen# pebble lies on the ground.
+desc1:A &+Ggreen# pebble lies on the ground, looking slightly sticky.
+desc2:A &+Ggreen# pebble lies on the ground, looking slightly sticky.
+ex:
+This &+Wpebble# was until recently used by an extremely dextrous &+Gsnake# as a
+juggling ball./
+
+id:branches
+name:branches
+flags:container noget
+loc:room7
+ex:
+These &+Ldead &+ybranches# lie at the base of the &+ytree#, &+Rrotting#./
+
+id:tree
+name:trunk
+flags:noget
+loc:room7
+ex:
+The &+Ctree# stretches above you, far into the &+Cclouds#./
+
+id:rocks
+name:rocks
+flags:noget container
+loc:room73
+ex:
+The &+yrocks# at the bottom of the &+Bpool &+Ys&+Cp&+Ya&+Cr&+Yk&+Cl&+Ye# in the &+Ylight#.
+They look like they could safely hold an item in the flowing &+Bwater#./
+
+id:altar
+flags:noget
+loc:room29
+ex:
+The &+Caltar# has a small &+Cpanel# in the front of it./
+
+id:panel
+name:panel
+loc:room29
+flags:noget container
+ex:
+The panel appears to be an opening to an air bubble inside the altar./
+
+id:chest
+name:chest
+flags:container openable
+incont:shelves
+state:1
+desc:A large &+Cchest# is &+Gopen# here.
+desc1:A large &+Cchest# is &+Gclosed# here.
+ex:
+This &+Cchest# can hold a large amount./
+
+id:plank
+name:planks
+flags:noget
+loc:room17
+ex:
+The &+Cplanks# appear rotten, and can't take much pressure./
+
+id:shelves
+name:shelves
+loc:room24
+flags:noget container
+ex:
+On closer inspection, the &+yshelves# appear to be not entirely empty./
+
+id:sap
+name:sap
+loc:room21
+flags:
+state:1
+desc:Some sticky &+gtree &+Csap# has been left here.
+desc1:Some sticky &+gtree &+Csap# runs down the tree trunk.
+ex:
+The &+gtree &+ysap# is extremely sticky, and could be used to stick objects together./
+
+id:cobweb
+name:cobwebs
+loc:room17
+flags:
+state:1
+desc:Some sticky &+Ccobwebs# have been left lying here.
+desc1:
+ex:
+Very sticky, this &+Lweb# was made to catch and hold some very big insects./
+
+id:markerobj1
+name:markerobj
+loc:room26
+flags:noget
+ex:
+/
+
+id:beak_1
+name:beak
+flags:weapon
+loc:room26
+desc:
+ex:
+You squint your eyes to try and see your &+Cbeak#./
+
+id:markerobj2
+name:markerobj
+loc:room26
+flags:noget
+ex:
+/
+
+id:teeth_1
+name:teeth
+flags:weapon
+loc:room26
+ex:
+You squint your eyes to try to see your &+Cteeth# but fail miserably./
+
+id:markerobj3
+name:markerobj
+loc:room26
+flags:noget
+ex:
+/
+
+id:red_flame
+name:flame
+loc:room26
+flags:lit
+desc:A glowing &+Rred &+Cflame# flickers in the air.
+ex:
+The &+Rflame &+Yf&+Rl&+Yi&+Rc&+Yk&+Re&+Yr&+Rs# and sparkles in the &+Bair#, dancing in front of you like a
+thing alive./
+
+id:blue_mist
+name:mist
+loc:room26
+flags:
+desc:A glowing &+Bblue &+Cmist# hovers in the air.
+ex:
+The &+Bmist# &+Bs&+Yp&+Ba&+Yr&+Bk&+Yl&+Be&+Ys# in the &+Bair#, dancing in front of you like a thing alive./
+
+id:bottle
+name:bottle
+incont:shelf
+flags:container
+desc:A thick glass &+Cbottle# lies discarded here.
+ex:
+The &+Cbottle# seems extremely tough and will easily withstand a few drops.
+A label on the side reads '&+MPerspex#'./
+
+id:stone_branch
+name:branch
+name:petrified
+loc:room26
+flags:weapon
+state:0
+desc:A large &+Cpetrified branch# lies here.
+desc1:The &+Cbranch# has been attached to the mechanism.
+ex:
+Turned to &+Wstone#, this &+ybranch# is solid as a rock, because it is a rock./
+
+id:branch
+name:branch
+loc:room58
+flags:weapon lightable
+state:2
+desc:A large &+Cbranch# lies on the ground.
+desc1:A large &+Cbranch# is &+Ylit# and &+Rburning# on the ground.
+desc2:One of the &+Cbranches# looks loose.
+ex:
+This &+Cbranch# looks dry enough to &+Ylight#./
+
+id:branch_mechanism
+name:branch
+loc:room26
+flags:noget
+state:0
+desc:A &+Cbranch# has been attached to the &+mmechanism#.
+desc1:A &+Cbranch# has been attached to the &+mmechanism#.
+ex:
+The &+Cbranch# has been attached to the &+mmechanism#./
+
+id:hole_voles
+name:hole
+loc:room48
+state:0
+linked:hole_marker
+flags:noget
+ex:
+This &+Chole# allows the vicious &+Rvoles# access to the &+Gsnake# kingdom./
+
+id:hole_marker
+name:hole
+loc:room50
+flags:noget
+state:0
+linked:hole_voles
+ex:
+/
+
+id:shelf
+name:shelf
+loc:room17
+flags:container noget
+ex:
+This &+Cshelf# lines an entire wall, but despite its size it seems fairly empty./
+
+id:book
+name:book
+incont:shelf
+flags:
+desc:A large &+Cbook# has been discarded here.
+ex:
+The large book is entitled 'Shapeshifting for Dummies'.  The first chapter is
+on changing into different animal types, accompanied by a note from the author
+which reads:
+'I fear that with the might of the Warlock spreading my research could be
+turned to evil, so I have gathered up my potions and hidden them throughout the
+land.  The gods be willing, a hero will come and use them for the good they
+were intended and free the lands from this accursed tyrrany. Each of the
+vials has the power to turn a person into the form of an animal - the ones
+I perfected allowed the user to become a bird, a beetle, a snake or a fish.
+Consuming the vials, while painful, allows access to areas of the forest
+no human could reach, and affords the opportunity to understand animals
+in their native tongue.'
+
+Following this is a theoretical potion for reverting from animal form back to 
+human form, however it is untested, and may require stabilising additions to
+the formula.
+
+The following ingredients are needed:
+A &+YGolden# Snake Scale.
+A Piece of &+yDung#.
+A &+WSilver# Feather.
+A &+MDiamond#.
+
+There is another short note explaining that this potion might prove too acidic
+and the ingredients could fail to merge. In this case, an alkaline solution
+would be needed as a final ingredient./
+
+id:dock
+name:dock
+loc:room53
+flags:noget
+state:0
+ex:
+The &+Cdock# is where prisoners on trial are placed during their hearing./
+
+id:markerdoor
+name:markerdoor
+loc:room14
+flags:noget
+state:0
+linked:markerdoor2
+desc1:The entrance to the &+gwestern# guardhouse has collapsed.
+ex:
+/
+
+id:markerdoor2
+name:markerdoor2
+loc:room17
+flags:noget
+state:0
+linked:markerdoor
+ex:
+/
+
+id:cell_door_in
+name:door
+loc:room51
+flags:noget openable lockable
+state:1
+linked:cell_door_out
+desc:The &+Cdoor# to the jail cell is open.
+ex:
+The &+Cdoor# appears to be &+Gopenable# from the outside./
+
+id:cell_door_out
+name:door
+loc:room52
+flags:noget
+state:1
+linked:cell_door_in
+desc:The &+Cdoor# out of the jail cell is open.
+ex:
+The &+Cdoor# does not appear to be &+Gopenable# from the inside./
+
+id:door_jail
+name:door
+loc:room81
+flags:noget
+desc:
+ex:
+The &+Cdoor# has no &+yhandle# and no &+Whinges# on this side.  There is no way to open
+it from the inside./
+
+id:scale
+name:scale
+loc:room26
+flags:
+state:0
+desc:A large &+Ygolden# snake &+Cscale# is here.
+desc1:A large &+Ygolden# snake &+Cscale# is here.
+ex:
+This &+Cscale# must be worth a fortune, it was shed by the &+Gsnake# god, &+mIssa#
+centuries ago, and has been the pride and joy of the &+Gsnake# kingdom ever since./
+
+id:mechanism
+name:hole
+loc:room14
+flags:noget
+desc:
+ex:
+This &+Mmechanism# allows the &+ydrawbridge# to be lowered, there's a &+Chole# for a &+mlever#
+in the side, but no &+mlever# is apparent at the moment./
+
+id:mechanism_lever
+name:lever
+loc:room26
+flags:noget
+state:0
+ex:
+This &+Mmechanism# allows the &+ydrawbridge# to be lowered, there's a &+Chole# for a &+mlever#
+in the side, and a &+mlever# is attached./
+
+id:drawbridge_in
+name:drawbridge
+loc:room14
+flags:noget
+state:1
+linked:drawbridge_out
+desc:The &+Cdrawbridge# has been lowered, allowing passage.
+desc1:The way &+Gnorth# is blocked by a raised &+Cdrawbridge#.
+ex:
+The &+Cdrawbridge# is linked to a series of &+yropes# by a complicated mechanism./
+
+id:drawbridge_out
+name:drawbridge
+loc:room15
+flags:noget
+state:1
+linked:drawbridge_in
+ex:
+The &+Cdrawbridge# leads outside the castle, back towards the &+gforest#./
+
+id:ropes
+loc:room14
+flags:noget
+state:0
+ex:
+These &+Rropes# control the &+ydrawbridge#, and keep it from falling down when in
+the upright position./
+
+id:plants
+loc:room1
+flags:noget
+ex:
+Beautiful &+Gplants# surround you, their &+Mscents# wafting towards you on the &+Bbreeze#./
+
+id:fish
+loc:room2
+flags:noget
+ex:
+&+BFish# swim lazily in the water, flitting to and fro, seemingly without a care
+in the world./
+
+id:river
+loc:room2
+flags:noget
+ex:
+The &+Briver# runs to the &+Geast#, the &+Br&+Ci&+Bp&+Cp&+Bl&+Ce&+Bs# reflecting &+Ysunlight# in a pretty display
+of &+Ylight#./
+
+id:river_2
+name:river
+loc:room5
+flags:noget
+ex:
+The &+Briver# runs to the &+Geast#, the &+Br&+Ci&+Bp&+Cp&+Bl&+Ce&+Bs# reflecting &+Ysunlight# in a pretty display
+of &+Ylight#./
+
+id:foliage
+name:foliage
+loc:room6
+flags:noget
+ex:
+The amount of &+Ggreenery# here is almost shocking to your senses, this appears
+to be a place where &+Gplantlife# flourishes./
+
+id:vines
+name:vines
+loc:room6
+flags:noget container
+ex:
+The &+Gvines# are just out of reach for you, and you are unable to give them
+a proper examination./
+
+id:dung
+name:dung
+loc:room64
+ex:
+The last remaining piece of &+Cdung# in the whole of the Jal T'Voth kingdom./
+
+id:crack
+loc:room68
+flags:noget
+ex:
+The &+Ccrack# is tiny, barely large enough to allow a sliver of light through./
+
+id:dung_stolen
+name:dung
+loc:room71
+state:0
+desc:The &+Cdung# stolen by the Nal Haseem lies on the ground here.
+desc1:The &+Cdung# stolen by the Nal Haseem has been returned to the Jal T'voth.
+ex:
+The lifeblood of the Jal T'voth, this &+Cdung# contains many nutrients./
+
+id:dung_old
+name:dung
+loc:room26
+desc:An old and hardened piece of &+Cdung# sits here.
+ex: 
+Hard as a rock, yet still obviously dung, preserved for generations by the
+royal family of the dung beetles, this dung would make a formidable projectile./
+
+id:fireplace
+flags:noget
+loc:room70
+ex:
+The &+Cfireplace# has long since died, nothing but a few embers in it now./
+
+id:gun
+name:gun
+flags:noget container
+loc:room70
+ex:
+The antique &+Cgun# is affixed high up on the wall, out of reach to you./
+
+id:gunpowder
+name:gunpowder
+flags:
+incont:gun
+desc:A small pile of &+Rexplosive &+Cgunpowder# has been left here.
+ex: 
+Ancient, but hopefully still working &+Cgunpowder#, which should provide a large
+and loud bang./
+
+id:vine
+name:vine
+flags:lightable
+state:0
+incont:vines
+desc:A &+Cvine# has been discarded here.
+ex:
+The &+Cvine# is fairly long and supple./
+
+id:skin
+name:skin
+loc:room26
+desc:The &+Cskin# of a young rabbit lies here, still covered in &+Rblood# from its previous owner.
+ex: 
+A small warm rabbit &+Cskin#, soft and cosy for wearing on long winter nights./
+
+id:orb
+name:orb
+loc:room26
+desc:A silver &+Corb# glows hotly on the floor.
+ex: 
+Mesmerising and entrancing, the sworls inside this orb are beautiful almost
+beyond belief./
+
+id:silver_feather
+name:feather
+loc:room26
+desc:A beautiful&+W silver &+Cfeather# flutters in the breeze.
+ex: 
+This is the feather of the great silver condor, thought by many to be extinct,
+the feathers of this magnificent bird are said to have special magical
+properties./
+
+id:bomb
+name:bomb
+flags:lightable
+loc:room26
+state:1
+desc1:A homemade &+Cbomb# lies on the ground.
+desc:A homemade &+Cbomb# lies here, fuse &+Ylit# and crackling away.
+ex: 
+You estimate from the length of vine you've used that you'll have about 30
+seconds from the time you light it until it explodes./
+
+id:liquid_human
+name:potion
+name:crimson
+loc:room26
+desc:A &+Cpotion# containing a thick &+Rcrimson# liquid lies here.
+ex: 
+The culmination of a lot of hard work and effort, this vial looks very
+tempting to eat./
+
+id:corpse
+name:corpse
+loc:room49
+flags:noget
+ex: 
+This vole &+Ccorpse# is pock marked with dozens of bites by the snakes, but it
+seems to have been able to withstand a vast amount of damage before succumbing 
+to the wounds and dying./
+
+id:straw
+name:straw
+loc:room19
+flags:noget
+ex: 
+This appears to be where the Chimera both sleeps and defecates. The smell is
+intolerable./
+
+id:eggs
+name:eggs
+flags:noget
+loc:room48
+ex:
+Shattered shells which once contained future generations of snakes./
+
+id:tree_herring
+name:tree
+loc:room6
+flags:noget
+ex: 
+The &+gtree# is relatively small, but it appears to be flourishing in this small
+&+Gclearing#. A &+Ldark &+Chole# is in its &+ybase#./
+
+id:bed87
+name:bed
+loc:room87
+flags:noget
+ex:
+The &+Cbed# is little more than a mattress in the corner. Still, it affords a good enough sleep./
+
+id:wall87
+name:walls
+loc:room87
+flags:noget
+ex: 
+The &+Cwalls# are completely devoid of any decoration./
+
+id:door87
+name:door
+loc:room87
+flags:noget
+ex: 
+The &+Cdoor# is wedged open and leads out to the &+Ceast#./
+
+id:bed89
+name:bed
+loc:room89
+flags:noget
+ex:
+The &+Cbed# is little more than a mattress in the corner. Still, it affords a good enough sleep./
+
+id:wall89
+name:walls
+loc:room89
+flags:noget
+ex: 
+The &+Cwalls# are completely devoid of any decoration./
+
+id:door89
+name:door
+loc:room89
+flags:noget
+ex: 
+The &+Cdoor# is wedged open and leads out to the &+Cwest#./
+
+id:door88
+name:doors
+loc:room88
+flags:noget
+ex: 
+The &+Cdoors# to the &+Ceast# and &+Cwest# are wedged open./
+
+id:roof88
+name:roof
+loc:room88
+flags:noget
+ex:#
+The &+Croof# has slight gaps between the slats, allowing beams of &+Ys&+yu&+Yn&+yl&+Yi&+yg&+Yh&+yt# to 
+split the room with &+Ygolden# rays./
+
+id:wall88
+name:walls
+loc:room88
+flags:noget
+ex: 
+The &+Cwalls# are completely devoid of any decoration, yet are made somehow beautiful
+with the dancing patterns of &+Ylight# that splay across them./
+
+id:wall90
+name:walls
+loc:room90
+flags:noget
+ex: 
+The &+Cwalls# are completely devoid of any decoration, yet are made somehow beautiful
+with the dancing patterns of &+Ylight# that splay across them./
+
+id:roof90
+name:roof
+loc:room90
+flags:noget
+ex:#
+The &+Croof# has slight gaps between the slats, allowing beams of &+Ys&+yu&+Yn&+yl&+Yi&+yg&+Yh&+yt# to 
+split the room with &+Ygolden# rays./
+
+id:staircase90
+name:staircase
+loc:room90
+flags:noget
+ex:#
+The &+Cstaircase# leads down to the inn's communal area./
+
+id:fire91
+name:fire
+loc:room91
+flags:noget lit
+ex:#
+The &+Yf&+Ri&+Yr&+Re# roars in its hearth, bringing warmth to all in the room./
+
+id:walls91
+name:walls
+loc:room91
+flags:noget
+ex:#
+The &+Cwalls# are fairly plain and understated, as a common inn's tend to be./
+
+id:bar91
+name:bar
+loc:room91
+flags:noget
+ex:#
+The &+Cbar# is well stocked with &+calcohols# and other tipples for those who indulge in such vices./
+
+id:staircase91
+name:staircase
+loc:room91
+flags:noget
+ex:#
+The &+Cstaircase# leads up to the inn's sleeping areas./
+
+id:door91
+name:door
+loc:room91
+flags:noget
+ex:#
+The &+Cdoor# leads out onto the street./
+
+id:whisky1
+name:whisky
+loc:room21
+flags:edible
+state:1
+desc:A shot of &+ywhisky# has been cast aside here.
+desc1:A shot of &+ywhisky# sits atop the bar, waiting to be drunk.
+ex:
+The &+ywhisky# smells peaty and delicious./
+
+id:whisky2
+name:whisky
+loc:room21
+flags:edible
+state:1
+desc:A shot of &+ywhisky# has been cast aside here.
+desc1:A shot of &+ywhisky# sits atop the bar, waiting to be drunk.
+ex:
+The &+ywhisky# smells peaty and delicious./
+
+id:whisky3
+name:whisky
+loc:room21
+flags:edible
+state:1
+desc:A shot of &+ywhisky# has been cast aside here.
+desc1:A shot of &+ywhisky# sits atop the bar, waiting to be drunk.
+ex:
+The &+ywhisky# smells peaty and delicious./
+
+id:whisky4
+name:whisky
+loc:room21
+flags:edible
+state:1
+desc:A shot of &+ywhisky# has been cast aside here.
+desc1:A shot of &+ywhisky# sits atop the bar, waiting to be drunk.
+ex:
+The &+ywhisky# smells peaty and delicious./
+
+id:whisky5
+name:whisky
+loc:room21
+flags:edible
+state:1
+desc:A shot of &+ywhisky# has been cast aside here.
+desc1:A shot of &+ywhisky# sits atop the bar, waiting to be drunk.
+ex:
+The &+ywhisky# smells peaty and delicious./
+
+id:poop
+name:poo
+loc:room21
+flags:edible
+state:1
+desc:A pile of &+ypoo# lies coiled here, a few flies buzzing around it...
+desc1:A pile of &+ypoo# lies coiled in the corner of the room...
+ex:
+The &+ypoo# is testament to your inability to hold your alcohol.../
+
+id:max_obj
+ex:
+/

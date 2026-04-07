@@ -1,0 +1,12 @@
+<div class="direction-grid">
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("n")'>N</button>
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("u")'>U</button>
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("w")'>W</button>
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("e")'>E</button>
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("s")'>S</button>
+    <button class="dir-btn" @onclick='() => OnDirection.InvokeAsync("d")'>D</button>
+</div>
+
+@code {
+    [Parameter] public EventCallback<string> OnDirection { get; set; }
+}

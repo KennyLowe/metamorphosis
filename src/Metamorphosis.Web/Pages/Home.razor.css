@@ -1,0 +1,27 @@
+.game-grid {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1300px;
+    background: black;
+}
+
+.left-panel {
+    flex: 0 0 auto;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 380px;
+}
+
+.right-top {
+    flex: 1;
+}
+
+.right-bottom {
+    display: flex;
+    justify-content: center;
+}

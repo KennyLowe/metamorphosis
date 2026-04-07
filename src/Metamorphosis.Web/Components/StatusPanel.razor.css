@@ -1,0 +1,61 @@
+.status-section {
+    margin-bottom: 10px;
+}
+
+.section-header {
+    font-size: 21px;
+    font-family: 'Consolas', monospace;
+    background: black;
+    padding: 4px 0;
+}
+
+.inventory-header { color: #AEC0FD; }
+.status-header { color: #60F31B; }
+.mana-header { color: #F354DE; }
+
+.inventory-box {
+    border: 3px solid #2449C9;
+    padding: 10px;
+    min-height: 149px;
+    font-size: 21px;
+    font-family: 'Consolas', monospace;
+    color: white;
+}
+
+.inv-line {
+    margin-bottom: 8px;
+}
+
+.ascii-box {
+    border: 3px solid #27EC13;
+    min-height: 234px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5px;
+}
+
+.ascii-art {
+    font-family: 'Consolas', monospace;
+    color: #E4DEDE;
+    margin: 0;
+    line-height: 1.1;
+    white-space: pre;
+}
+
+.str-mana-section {
+    margin-top: 10px;
+}
+
+.mana-box {
+    border: 3px solid #F354DE;
+    padding: 8px;
+    min-height: 50px;
+}
+
+.mana-text {
+    font-family: 'Consolas', monospace;
+    font-size: 21px;
+    color: #E4DEDE;
+    margin: 0;
+}
