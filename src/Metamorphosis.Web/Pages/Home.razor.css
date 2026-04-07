@@ -16,12 +16,3 @@
     gap: 10px;
     min-width: 380px;
 }
-
-.right-top {
-    flex: 1;
-}
-
-.right-bottom {
-    display: flex;
-    justify-content: center;
-}
