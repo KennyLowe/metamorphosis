@@ -6,11 +6,25 @@ public static class CommandParser
 {
     private static readonly string[] KnownCommands =
     {
-        "n", "l", "h", "r", "q", "qu", "qui", "quit",
+        // Single-char shortcuts (must come first to avoid prefix conflicts)
+        "n", "l", "h", "r", "q", "qu", "qui",
+        // Navigation
         "north", "south", "east", "west", "up", "down",
-        "look", "ploc", "examine", "inventory", "drop",
-        "get", "take", "wield", "goto", "pray", "reset",
-        "kneel", "jump", "help"
+        // View
+        "look", "examine", "ploc", "inventory",
+        // Basic interaction
+        "get", "take", "drop", "wield", "wear", "remove",
+        // Advanced interaction
+        "eat", "drink", "dig", "fly", "climb", "enter",
+        "open", "close", "push", "pull", "turn",
+        "peck", "bite", "skin", "kick", "cut",
+        "fill", "pour", "light", "smell", "tickle",
+        "give", "kill", "attack", "cast", "say",
+        "empty",
+        // Special
+        "goto", "pray", "kneel", "jump",
+        // Meta
+        "help", "reset", "quit"
     };
 
     public static ParsedCommand? Parse(string input)
