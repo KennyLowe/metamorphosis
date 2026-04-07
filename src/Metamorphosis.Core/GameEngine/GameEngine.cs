@@ -561,13 +561,28 @@ public class GameEngine
         _store.UpdatePlayer(player);
         _logger?.LogInformation("New game started");
 
-        var roomOutput = ShowCurrentRoom();
-        roomOutput.ShouldClearOutput = true;
+        // Show room85 (story prologue) then move player to room1 (game start)
+        var prologueRoom = _store.GetRoomById(PlayerState.StartingRoom);
+        var prologue = CreateOutput(o =>
+        {
+            o.ShouldClearOutput = true;
+            if (prologueRoom != null)
+            {
+                o.AddLine("-= " + "&+g" + prologueRoom.Name + "#" + " =-");
+                o.AddLine(prologueRoom.Description);
+                o.AddLine("");
+            }
+        });
 
+        // Move to room1 — the actual game world entry point
+        player.CurrentRoomId = "room1";
+        _store.UpdatePlayer(player);
+
+        var roomOutput = ShowCurrentRoom();
         var helpLine = CreateOutput(o =>
             o.AddLine("If you are new to text adventures, type 'help' for some commands to get started."));
 
-        return MergeOutput(roomOutput, helpLine);
+        return MergeOutput(MergeOutput(prologue, roomOutput), helpLine);
     }
 
     private GameOutput LoadGame()
