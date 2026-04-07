@@ -33,8 +33,8 @@ public class GameEngineTests
 
         Assert.True(output.ShouldClearOutput);
         Assert.NotEmpty(output.Lines);
-        // After new game, player is moved from prologue (room85) to room1
-        Assert.Equal("room1", _store.Player.CurrentRoomId);
+        // After new game, player is moved from prologue (room85) to room91 (The Inn)
+        Assert.Equal("room91", _store.Player.CurrentRoomId);
         Assert.False(_store.Player.IsInEntryMenu);
     }
 
@@ -243,12 +243,13 @@ public class GameEngineTests
     {
         _engine.Initialize();
         _engine.ProcessCommand("n"); // New game
-        _engine.ProcessCommand("goto room1"); // Go to room1 which has exits
+        // Already at room91 (The Inn) which has exits
 
         var output = _engine.ProcessCommand("look");
         var allText = string.Join("\n", output.Lines.Select(l => string.Join("", l.Select(s => s.Text))));
 
         Assert.Contains("Obvious exits", allText);
-        Assert.Contains("North", allText);
+        // Room91 (The Inn) has west and up exits
+        Assert.Contains("West", allText);
     }
 }

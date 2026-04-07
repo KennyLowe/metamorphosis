@@ -574,8 +574,8 @@ public class GameEngine
             }
         });
 
-        // Move to room1 — the actual game world entry point
-        player.CurrentRoomId = "room1";
+        // Move to room91 (The Inn) — where the adventure begins
+        player.CurrentRoomId = "room91";
         _store.UpdatePlayer(player);
 
         var roomOutput = ShowCurrentRoom();

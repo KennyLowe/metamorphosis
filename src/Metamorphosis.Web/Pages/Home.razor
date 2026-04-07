@@ -9,17 +9,12 @@
         <CommandInput OnCommand="HandleCommand" />
     </div>
     <div class="right-panel">
-        <div class="right-top">
-            <StatusPanel
-                Inventory="@inventory"
-                AsciiArt="@asciiArt"
-                AsciiArtFontSize="@asciiArtFontSize"
-                StatusText="@statusText"
-                StrengthMana="@strengthMana" />
-        </div>
-        <div class="right-bottom">
-            <DirectionButtons OnDirection="HandleDirection" />
-        </div>
+        <StatusPanel
+            Inventory="@inventory"
+            AsciiArt="@asciiArt"
+            AsciiArtFontSize="@asciiArtFontSize"
+            StatusText="@statusText"
+            StrengthMana="@strengthMana" />
     </div>
 </div>
 
@@ -45,14 +40,9 @@
         StateHasChanged();
         if (outputComponent != null)
         {
-            await Task.Delay(10); // Let DOM update
+            await Task.Delay(10);
             await outputComponent.ScrollToBottom();
         }
-    }
-
-    private async Task HandleDirection(string direction)
-    {
-        await HandleCommand(direction);
     }
 
     private void ApplyOutput(Metamorphosis.Core.GameEngine.GameOutput result)
