@@ -1,0 +1,43 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+ARM/
+[Bb]in/
+[Oo]bj/
+[Bb]uild/
+
+# NuGet packages
+packages/
+*.nupkg
+**/[Pp]ackages/**
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.psess
+*.vspx
+
+# Windows Store app packaging
+AppPackages/
+BundleArtifacts/
+
+# Signing
+*.pfx
+*.snk
+
+# Upgrade logs
+UpgradeLog*.htm
+
+# Backup directories
+Backup/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

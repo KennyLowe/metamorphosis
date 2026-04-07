@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="Meta.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Meta"
+    xmlns:common="using:Meta.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Viewbox StretchDirection="Both" >
+        <Grid RenderTransformOrigin="0.5,0.5" Background="Black">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+
+
+            <Border x:Name="border" BorderBrush="Black" BorderThickness="10" HorizontalAlignment="Left" Height="550" Margin="64,70,0,0" VerticalAlignment="Top" Width="Auto" Background="Black" RenderTransformOrigin="0.5,0.5" Visibility="Visible" >
+                <Border.RenderTransform>
+                    <CompositeTransform/>
+                </Border.RenderTransform>
+                <ScrollViewer Name="OutputScroll" >
+                    <RichTextBlock x:Name="routputWindow" HorizontalAlignment="Left" Height="Auto" Margin="10,10,10,10" FontSize="17" Foreground="#FFEEECEC" TextWrapping="Wrap"  VerticalAlignment="Top" Width="773" FontFamily="Consolas">
+                    </RichTextBlock>
+                </ScrollViewer>
+            </Border>
+            <TextBox  x:Name="cmdEntry" HorizontalAlignment="Left" Height="47" Margin="64,642,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="813" FontSize="20" BorderThickness="3" BorderBrush="#FF1E5DE4"                            RenderTransformOrigin="0.5,0.5" FontFamily="Consolas" KeyDown="cmdEntry_KeyDown">
+                <TextBox.RenderTransform>
+                    <CompositeTransform/>
+                </TextBox.RenderTransform>
+            </TextBox>
+            <Button x:Name="sendCmd" Content="Send Command" HorizontalAlignment="Left" Margin="904,622,0,0" VerticalAlignment="Top" Height="67" Width="185"                      RenderTransformOrigin="0.5,0.5" FontSize="21" FontFamily="Consolas" Click="send_Command">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="s_button" Content="S" HorizontalAlignment="Left" Margin="1120,610,0,-1" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_s">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="n_button" Content="N" HorizontalAlignment="Left" Margin="1120,453,0,0" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_n">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="e_button" Content="E" HorizontalAlignment="Left" Margin="1200,531,0,0" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_e">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="w_button" Content="W" HorizontalAlignment="Left" Margin="1120,531,0,0" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_w">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="u_button" Content="U" HorizontalAlignment="Left" Margin="1200,453,0,0" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_u">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Button  x:Name="d_button" Content="D" HorizontalAlignment="Left" Margin="1200,610,0,-1" VerticalAlignment="Top" Height="80" Width="80" FontSize="40"                RenderTransformOrigin="0.5,0.5" Click="tap_d">
+                <Button.RenderTransform>
+                    <CompositeTransform/>
+                </Button.RenderTransform>
+            </Button>
+            <Border x:Name="ascii_border" BorderBrush="#FF27EC13" BorderThickness="3" HorizontalAlignment="Left" Height="234" Margin="904,376,0,0" VerticalAlignment="Top" Width="185" RenderTransformOrigin="0.5,0.5">
+                <Border.RenderTransform>
+                    <CompositeTransform/>
+                </Border.RenderTransform>
+            </Border>
+            <TextBlock x:Name="ascii" HorizontalAlignment="Left" Margin="896,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="221" Width="185" FontFamily="Consolas" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBox x:Name="status_text" HorizontalAlignment="Left" Margin="904,332,0,0" TextWrapping="Wrap" Text="Status" VerticalAlignment="Top" Width="185" Foreground="#FF60F31B" Height="42" IsReadOnly="True" FontSize="21" Background="Black" BorderBrush="Black" FontFamily="Consolas"/>
+            <Border BorderBrush="#FF2449C9" BorderThickness="3" HorizontalAlignment="Left" Height="189" Margin="904,132,0,0" VerticalAlignment="Top" Width="376"/>
+            <TextBlock x:Name="inv_box" HorizontalAlignment="Left" Margin="926,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="149" Width="336" Foreground="White" FontSize="21" FontFamily="Consolas"/>
+            <TextBox x:Name="status_text_Copy" HorizontalAlignment="Left" Margin="904,80,0,0" TextWrapping="Wrap" Text="Inventory" VerticalAlignment="Top" Width="160" Foreground="#FFAEC0FD" Height="40" IsReadOnly="True" FontSize="21" Background="Black" BorderBrush="Black" FontFamily="Consolas"/>
+            <Border x:Name="str_mana_border" BorderBrush="#FFF354DE" BorderThickness="3" HorizontalAlignment="Left" Height="63" Margin="1120,376,0,0" VerticalAlignment="Top" Width="160"/>
+            <TextBlock x:Name="str_mana" HorizontalAlignment="Left" Margin="1144,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="76" Width="136" FontSize="21" Text="S:999\999 M:999\999" FontFamily="Consolas"/>
+            <TextBox x:Name="status_text_Copy1" HorizontalAlignment="Left" Margin="1116,332,0,0" TextWrapping="Wrap" Text="Strength\Mana" VerticalAlignment="Top" Width="185" Foreground="#FFF354DE" Height="42" IsReadOnly="True" FontSize="21" Background="Black" BorderBrush="Black" FontFamily="Consolas"/>
+            <Image Source="AppX/logo.png" x:Name="logo" HorizontalAlignment="Left" Height="65" Margin="259,5,0,0" VerticalAlignment="Top" Width="578"/>
+            <MediaElement x:Name="music" HorizontalAlignment="Left" Height="100" Margin="1191,0,0,0" VerticalAlignment="Top" Width="100" IsLooping="True" IsTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsDoubleTapEnabled="False"/>
+            <MediaElement x:Name="effects" HorizontalAlignment="Left" Height="100" Margin="1191,0,0,0" VerticalAlignment="Top" Width="100" IsLooping="True" IsTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsDoubleTapEnabled="False"/>
+            <ToggleSwitch x:Name="soundsToggle" Header="Sounds" HorizontalAlignment="Left" Margin="1123,49,0,0" VerticalAlignment="Top" FontFamily="Consolas" FontSize="16" Toggled="soundsToggle_Toggled" IsOn="True"/>
+
+        </Grid>
+    </Viewbox>
+</Page>
+

@@ -1,0 +1,71 @@
+﻿Common functions you will use while writing special cases for this engine
+-------------------------------------------------------------------------
+
+The engine is intentionally kept separate from Zone specials - please keep it that way.
+
+Ensure IFDEFs are used for any zone specific code.
+
+Colour Codes operate on the format &+<colour> String #
+i.e. Define colour code, enter string, end with hash.
+This is an &+Cexample# of a &+Rstring# with cyan and red text in it.
+
+Valid colour codes are:
+&+L: Black
+&+B: Blue
+&+C: Cyan
+&+G: Green
+&+M: Magenta
+&+R: Red
+&+W: White
+&+Y: Yellow
+&+y: Brown
+&+g: Dark Green
+
+Function	Outcome/Usage
+--------	--------------
+
+bprintf:	Appends text to RichTextBlock 'routputWindow'.
+			Usage: bprintf(string);
+
+dead:		Checks if player is dead
+			Usage: dead(); Checks if player's state is dead - if it is, returns 1, if not, returns 0.
+	     
+kill:		Kills player
+			Usage: kill(); Kills player, shows death menu.
+
+ch_type:	Changes a player's animal form.
+			Usage: ch_type("string"); Valid strings are bird, snake, beetle, fish, human.
+
+type:		Checks what form a player is currently in.
+			Usage: type(string); returns type as a string - bird, snake, beetle, fish etc.
+
+show_ploc:	Shows the player's current location.
+			Usage: show_ploc();
+
+ruid:		Converts a room name into a uid. Returns an int.
+			Usage: ruid(string); where string is a roomname. Returns 0 if no corresponding room name is found.
+
+muid:		Converts a mobile name into a uid. Returns an int.
+			Usage: muid(string); where string is a mobile name. Returns 0 if no corresponding mob name is found.
+
+ouid:		Converts an object name into a uid. Returns an int.
+			Usage: ouid(string); where string is an object name. Returns 0 if no corresponding obj name is found.
+
+ploc:		Returns player or mobile's current location as an int.
+			Usage: ploc(plr); Where plr is a uid or mynum for player.
+
+oloc:		Returns object's current location as an int.
+			Usage: oloc(obj); Where obj is a uid.
+
+setoloc:	Sets an object's location.
+			Usage: setoloc(obj, loc); where obj is a uid and loc is a uid.
+
+setploc:	Changes a player or mobile's location.
+			Usage: setploc(plr, ploc); where plr is a uid or mynum for player, and ploc is a uid of a location.
+
+update_inv: Updates player's inventory based on databases.
+			Usage: update_inv();
+
+limbo_all:	Removes all player's objects and moves them to limbo.
+			Usage: limbo_all();
+
