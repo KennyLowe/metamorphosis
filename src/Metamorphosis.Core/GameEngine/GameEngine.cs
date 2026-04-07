@@ -574,8 +574,8 @@ public class GameEngine
             }
         });
 
-        // Move to room91 (The Inn) — where the adventure begins
-        player.CurrentRoomId = "room91";
+        // Move to room87 (Sleeping Quarters) — where the adventure begins
+        player.CurrentRoomId = "room87";
         _store.UpdatePlayer(player);
 
         var roomOutput = ShowCurrentRoom();
