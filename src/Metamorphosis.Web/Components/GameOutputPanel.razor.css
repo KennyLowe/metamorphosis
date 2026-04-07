@@ -1,0 +1,18 @@
+.output-scroll {
+    height: 550px;
+    overflow-y: auto;
+    background: black;
+    border: 3px solid #3a35ae;
+    padding: 10px;
+    font-size: 17px;
+    font-family: 'Consolas', monospace;
+    width: 793px;
+}
+
+.output-line {
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

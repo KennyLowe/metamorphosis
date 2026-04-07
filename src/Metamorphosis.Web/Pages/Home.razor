@@ -1,0 +1,76 @@
+@page "/"
+@inject GameEngine Engine
+
+<PageTitle>Metamorphosis</PageTitle>
+
+<div class="game-grid">
+    <div class="left-panel">
+        <GameOutputPanel @ref="outputComponent" Lines="@outputLines" />
+        <CommandInput OnCommand="HandleCommand" />
+    </div>
+    <div class="right-panel">
+        <div class="right-top">
+            <StatusPanel
+                Inventory="@inventory"
+                AsciiArt="@asciiArt"
+                AsciiArtFontSize="@asciiArtFontSize"
+                StatusText="@statusText"
+                StrengthMana="@strengthMana" />
+        </div>
+        <div class="right-bottom">
+            <DirectionButtons OnDirection="HandleDirection" />
+        </div>
+    </div>
+</div>
+
+@code {
+    private GameOutputPanel? outputComponent;
+    private List<List<TextSegment>> outputLines = new();
+    private InventoryState? inventory;
+    private string? asciiArt;
+    private int asciiArtFontSize = 11;
+    private string? statusText;
+    private string? strengthMana;
+
+    protected override void OnInitialized()
+    {
+        var result = Engine.Initialize();
+        ApplyOutput(result);
+    }
+
+    private async Task HandleCommand(string command)
+    {
+        var result = Engine.ProcessCommand(command);
+        ApplyOutput(result);
+        StateHasChanged();
+        if (outputComponent != null)
+        {
+            await Task.Delay(10); // Let DOM update
+            await outputComponent.ScrollToBottom();
+        }
+    }
+
+    private async Task HandleDirection(string direction)
+    {
+        await HandleCommand(direction);
+    }
+
+    private void ApplyOutput(Metamorphosis.Core.GameEngine.GameOutput result)
+    {
+        if (result.ShouldClearOutput)
+            outputLines.Clear();
+
+        outputLines.AddRange(result.Lines);
+
+        if (result.Inventory != null) inventory = result.Inventory;
+        if (result.AsciiArt != null)
+        {
+            asciiArt = result.AsciiArt;
+            asciiArtFontSize = result.StatusText == "beetle"
+                ? Metamorphosis.Core.GameEngine.AsciiArt.GetFontSize(AnimalForm.Beetle)
+                : Metamorphosis.Core.GameEngine.AsciiArt.GetFontSize(AnimalForm.Human);
+        }
+        if (result.StatusText != null) statusText = result.StatusText;
+        if (result.StrengthMana != null) strengthMana = result.StrengthMana;
+    }
+}

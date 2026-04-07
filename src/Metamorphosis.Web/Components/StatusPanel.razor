@@ -1,0 +1,30 @@
+<div class="status-section">
+    <div class="section-header inventory-header">Inventory</div>
+    <div class="inventory-box">
+        <div class="inv-line">Worn: @(string.Join(" ", Inventory?.Worn ?? new()))</div>
+        <div class="inv-line">Carried: @(string.Join(" ", Inventory?.Carried ?? new()))</div>
+        <div class="inv-line">Wielded: @(string.Join(" ", Inventory?.Wielded ?? new()))</div>
+    </div>
+</div>
+
+<div class="status-section">
+    <div class="section-header status-header">@(StatusText ?? "Status")</div>
+    <div class="ascii-box">
+        <pre class="ascii-art" style="font-size: @(AsciiArtFontSize)px">@AsciiArt</pre>
+    </div>
+</div>
+
+<div class="str-mana-section">
+    <div class="section-header mana-header">Strength\Mana</div>
+    <div class="mana-box">
+        <pre class="mana-text">@(StrengthMana ?? "S:999\\999 M:999\\999")</pre>
+    </div>
+</div>
+
+@code {
+    [Parameter] public InventoryState? Inventory { get; set; }
+    [Parameter] public string? AsciiArt { get; set; }
+    [Parameter] public int AsciiArtFontSize { get; set; } = 11;
+    [Parameter] public string? StatusText { get; set; }
+    [Parameter] public string? StrengthMana { get; set; }
+}
