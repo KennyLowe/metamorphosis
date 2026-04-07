@@ -11,6 +11,7 @@ public class GameEngine
     private readonly ILogger<GameEngine>? _logger;
     private readonly RoomEvents _events;
     private readonly GameCommands _commands;
+    private readonly TransformationSystem _transformations;
     private List<Room> _baseRooms = new();
     private List<Mobile> _baseMobiles = new();
     private List<GameObject> _baseObjects = new();
@@ -22,6 +23,7 @@ public class GameEngine
         _logger = logger;
         _events = new RoomEvents(store);
         _commands = new GameCommands(store);
+        _transformations = new TransformationSystem(store, _events);
     }
 
     public GameOutput Initialize()
@@ -135,7 +137,7 @@ public class GameEngine
             "wear" => _commands.Wear(cmd.Argument),
             "remove" => _commands.Remove(cmd.Argument),
             // Advanced interaction
-            "eat" or "drink" => _commands.Eat(cmd.Argument),
+            "eat" or "drink" => _transformations.Eat(cmd.Argument),
             "dig" => _commands.Dig(),
             "fly" => _commands.Fly(),
             "climb" => _commands.Climb(cmd.Argument),
