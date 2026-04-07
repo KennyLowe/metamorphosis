@@ -235,4 +235,19 @@ public class GameEngineTests
         Assert.Equal(AnimalForm.Beetle, _store.Player.CurrentForm);
         Assert.Equal("room72", _store.Player.CurrentRoomId);
     }
+
+
+    [Fact]
+    public void Look_AtRoomWithExits_ShowsDirections()
+    {
+        _engine.Initialize();
+        _engine.ProcessCommand("n"); // New game
+        _engine.ProcessCommand("goto room1"); // Go to room1 which has exits
+
+        var output = _engine.ProcessCommand("look");
+        var allText = string.Join("\n", output.Lines.Select(l => string.Join("", l.Select(s => s.Text))));
+
+        Assert.Contains("Obvious exits", allText);
+        Assert.Contains("North", allText);
+    }
 }
